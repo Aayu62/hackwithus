@@ -1,9 +1,29 @@
-import React, { useState } from 'react';
-import { Terminal, Bell, Menu, X, Flame, Trophy, Lightbulb, HelpCircle, Home, Sparkles } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Terminal, Bell, Menu, X, Flame, Trophy, Lightbulb, HelpCircle, Home, Sparkles, User } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
+import AuthModal from './AuthModal';
 
 export default function Navbar({ activeSection, setActiveSection }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [notificationsOpen, setNotificationsOpen] = useState(false);
+  const [authModalOpen, setAuthModalOpen] = useState(false);
+  const notificationRef = useRef(null);
+  const { currentUser } = useAuth();
+
+  // Close notification dropdown automatically when clicking anywhere outside
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (notificationRef.current && !notificationRef.current.contains(event.target)) {
+        setNotificationsOpen(false);
+      }
+    }
+    if (notificationsOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [notificationsOpen]);
 
   const navItems = [
     { id: 'home', label: 'Home', icon: Home },
@@ -28,9 +48,7 @@ export default function Navbar({ activeSection, setActiveSection }) {
           onClick={() => handleNavClick('home')}
           className="flex items-center gap-3 cursor-pointer group"
         >
-          <div className="w-10 h-10 rounded-lg bg-brand-yellow text-black flex items-center justify-center font-bold border-2 border-black shadow-neo group-hover:scale-105 transition-transform">
-            <Terminal className="w-6 h-6 stroke-[2.5]" />
-          </div>
+          <img src="/hwu_favicon.png" alt="HackWithUs Logo" className="w-14 h-14 object-contain group-hover:scale-105 transition-transform" />
           <div className="flex flex-col">
             <span className="font-display text-2xl font-extrabold tracking-tight text-black group-hover:text-brand-yellow transition-colors flex items-center gap-1.5">
               HackWithUs
@@ -63,14 +81,17 @@ export default function Navbar({ activeSection, setActiveSection }) {
 
         {/* Action Buttons & Notifications */}
         <div className="flex items-center gap-3">
-          <div className="relative">
+          <div className="relative" ref={notificationRef}>
             <button
               onClick={() => setNotificationsOpen(!notificationsOpen)}
-              className="relative p-2 rounded-lg text-black hover:bg-zinc-100 border-2 border-black transition-colors"
+              className="relative p-2 rounded-lg text-black hover:bg-zinc-100 border-2 border-black transition-colors flex items-center justify-center"
               title="Notifications"
             >
-              <Bell className="w-5 h-5" />
-              <span className="absolute top-1 right-1 w-2.5 h-2.5 bg-brand-yellow rounded-full ring-2 ring-black"></span>
+              <svg className="w-6 h-6 fill-current" viewBox="14 17 28 22">
+                <path
+                  d="M 28 38 c 1.105 0 2 -0.895 2 -2 h -4 c 0 1.105 0.895 2 2 2 Z m 0 -20 c 3.441 0 6.882 3.529 7 6.697 v 3.636 s 2 1.167 2 2.672 c 0 2.043 -1.34 2.995 -2.993 2.995 h -12.015 c -1.64 0 -2.993 -1 -2.993 -2.995 v -0.509 c 0 -0.552 0.385 -1.22 0.86 -1.497 l 1.14 -0.665 v -3.636 c 0.118 -3.168 3.559 -6.697 7 -6.697 Z"
+                />
+              </svg>
             </button>
 
             {/* Notifications Dropdown Popup */}
@@ -84,25 +105,38 @@ export default function Navbar({ activeSection, setActiveSection }) {
                 </div>
                 <div className="space-y-3 text-xs">
                   <div className="p-3 bg-zinc-50 rounded-lg border-2 border-black hover:bg-brand-yellow/20 transition-colors">
-                    <p className="font-bold text-black mb-0.5">Quantum Hack Matrix 2026</p>
-                    <p className="text-zinc-700 text-[11px]">Final submission deadline in 18 hours!</p>
+                    <p className="font-bold text-black mb-0.5">NO LIMITS. constraints//ZERO Hackathon 2026</p>
+                    <p className="text-zinc-700 text-[11px]">Don't miss out. Registration Ends - 29th Sep!</p>
                   </div>
-                  <div className="p-3 bg-zinc-50 rounded-lg border-2 border-black hover:bg-brand-yellow/20 transition-colors">
+                  {/*<div className="p-3 bg-zinc-50 rounded-lg border-2 border-black hover:bg-brand-yellow/20 transition-colors">
                     <p className="font-bold text-black mb-0.5">AlgoSprint #42 Live</p>
                     <p className="text-zinc-700 text-[11px]">3,400 competitors actively solving DP problem set.</p>
-                  </div>
+                  </div>*/}
                 </div>
               </div>
             )}
           </div>
 
-          {/* Quick Action CTA */}
+          {/* Profile Icon Button */}
           <button 
-            onClick={() => handleNavClick('hackathons')}
-            className="hidden sm:flex items-center gap-2 bg-brand-yellow text-black border-2 border-black font-mono text-xs uppercase tracking-wider font-extrabold px-4 py-2 rounded-md transition-all shadow-neo hover:translate-x-0.5 hover:translate-y-0.5"
+            onClick={() => setAuthModalOpen(true)}
+            className="flex items-center gap-2 bg-white hover:bg-zinc-100 text-black border-2 border-black font-mono text-xs uppercase tracking-wider font-black p-1.5 sm:px-3 sm:py-2 rounded-lg transition-all shadow-neo"
+            title={currentUser ? currentUser.name : 'Sign In'}
           >
-            <Sparkles className="w-4 h-4" />
-            Explore Live
+            {currentUser ? (
+              <img
+                src={currentUser.photoURL}
+                alt={currentUser.name}
+                className="w-6 h-6 rounded-full border border-black object-cover"
+              />
+            ) : (
+              <div className="w-6 h-6 rounded-full bg-brand-yellow border border-black flex items-center justify-center">
+                <User className="w-3.5 h-3.5 text-black stroke-[2.5]" />
+              </div>
+            )}
+            <span className="hidden sm:inline font-bold">
+              {currentUser ? currentUser.name.split(' ')[0] : 'Profile'}
+            </span>
           </button>
 
           {/* Mobile Hamburger Menu Toggle */}
@@ -138,6 +172,12 @@ export default function Navbar({ activeSection, setActiveSection }) {
           })}
         </div>
       )}
+
+      {/* Google Auth & User Profile Modal */}
+      <AuthModal
+        isOpen={authModalOpen}
+        onClose={() => setAuthModalOpen(false)}
+      />
     </header>
   );
 }

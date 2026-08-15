@@ -8,7 +8,7 @@ import EventModal from './components/EventModal';
 import Footer from './components/Footer';
 
 import { SECTION_METADATA, EVENTS_DATA } from './data/eventsData';
-import { Flame, ArrowRight } from 'lucide-react';
+import { Flame, ArrowRight, Info, ExternalLink } from 'lucide-react';
 
 export default function App() {
   const [activeSection, setActiveSection] = useState('home'); // 'home' | 'hackathons' | 'competitions' | 'workshops' | 'quizzes'
@@ -146,17 +146,21 @@ function EventSectionCardPreview({ event, onOpenModal }) {
         </p>
       </div>
 
-      <div className="pt-4 border-t-2 border-black flex items-center justify-between">
-        <div>
-          <span className="text-[10px] font-mono text-zinc-600 uppercase font-extrabold block">Prize Pool</span>
-          <span className="font-mono text-sm font-black text-black">{event.prizePool}</span>
-        </div>
+      <div className="pt-4 border-t-2 border-black flex items-center justify-between gap-2">
+        <button
+          onClick={() => onOpenModal(event, 'info')}
+          className="flex-1 bg-white hover:bg-zinc-100 text-black font-mono text-xs uppercase tracking-wider font-black py-2 px-3 rounded-lg border-2 border-black shadow-neo flex items-center justify-center gap-1 transition-all"
+        >
+          <Info className="w-3.5 h-3.5 stroke-[2.5]" />
+          Info
+        </button>
 
         <button
-          onClick={() => onOpenModal(event, 'join')}
-          className="neo-btn-yellow text-xs font-mono px-4 py-2 rounded-lg font-black"
+          onClick={() => window.open(event.unstopUrl || 'https://unstop.com', '_blank', 'noopener,noreferrer')}
+          className="flex-1 neo-btn-yellow text-xs font-mono py-2 px-3 rounded-lg font-black flex items-center justify-center gap-1 shadow-neo"
         >
-          Join Now
+          Register
+          <ExternalLink className="w-3.5 h-3.5 stroke-[2.5]" />
         </button>
       </div>
     </div>

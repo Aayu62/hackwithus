@@ -4,7 +4,7 @@ export const SECTION_METADATA = {
     title: 'Hackathons',
     subtitle: 'Build revolutionary prototypes, hack around the clock, and compete for massive prize pools.',
     icon: 'terminal',
-    tagline: '48-72h Sprint Competitions',
+    tagline: '8-72h Sprint Competitions',
     bannerImage: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80'
   },
   competitions: {
@@ -36,7 +36,7 @@ export const SECTION_METADATA = {
 export const EVENTS_DATA = {
   hackathons: {
     ongoing: [
-      {
+      /*{
         id: 'hack-1',
         title: 'Quantum Computing Hack Matrix 2026',
         category: 'Quantum SDK & AI',
@@ -63,23 +63,23 @@ export const EVENTS_DATA = {
         isFeatured: false,
         image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80',
         organizer: 'OpenAI Ecosystem'
-      }
+      }*/
     ],
     upcoming: [
       {
-        id: 'hack-3',
-        title: 'Web3 Zero-Knowledge Privacy Hack',
-        category: 'Blockchain & Cryptography',
-        difficulty: 'Advanced',
-        prizePool: '$40,000',
-        startsIn: '3 Days',
-        startDate: 'Aug 20, 2026',
-        regDeadline: 'Aug 19, 2026',
-        description: 'Build zero-knowledge proof protocols and confidential smart contract systems using Circom and Noir.',
-        tags: ['ZK-Rollups', 'Rust', 'Solidity', 'Circom'],
+        id: 'hack-1',
+        title: 'NO LIMITS. constraints//Zero',
+        category: 'Build & Deploy',
+        difficulty: 'Begineer',
+        prizePool: '₹9000',
+        startsIn: '30 Days',
+        startDate: 'Sep 30, 2026',
+        regDeadline: 'Sep 29, 2026',
+        description: 'NO LIMITS. CONSTRAINTS//ZERO is a no-limits build-and-ship hackathon for students and developers who want to test how far they can push an idea — from a blank repo to a live, deployed product — under real time pressure and real constraints.\n\nThere are no restrictions on how you build. Use AI. Use agents. Use whatever tools, APIs, or scraps of infrastructure you can get your hands on. The only rule that matters: by the end, it has to be live. Not a mockup. Not a slide deck. A real, working, deployed link.\n\nTheme\n\"Resourceful Intelligence\"\n\nIn the age of AI, the differentiator isn\'t who has the most resources — it\'s who can turn limited time, limited compute, and limited tools into something that actually ships. Every problem statement in this hackathon is designed to reward resourcefulness, fast decision-making, and execution — not just raw ambition.\n\nFormat\nMode: Fully online / remote\nTeam Size: 2–4 members per team\nStructure: 3 rounds, increasing in duration and difficulty\nRound\tDuration\tFocus\nRound 1 – Qualifier\t2 hours\tBasic Skill Test: Frontend+Backend Debug Session\nRound 2 – Build Sprint\t24 hours\tIdeation to protype with deeper build challenge testing technical execution under tight time pressure.\nRound 3 – Final Deploy\t12–15 hours\tFull build-to-deploy marathon on the final problem statement — teams ship a complete, live product\n(Exact dates, timings, and platform links to be announced closer to the event.)\n\nEligibility\nOpen to all students (undergraduate & postgraduate) and early-career developers\nParticipants must form teams of 2 to 4 members before Round 1\nEach participant may be part of only one team\nSolo participation is not permitted — teams must be finalized at registration\nAll team members must be present/active for a round for the team to qualify for scoring in that round\n\nRules\nAI & agent usage is fully allowed and encouraged. Use LLMs, coding agents, no-code tools, or any automation you want — how you use your resources is part of what\'s being judged.\nDeployment is mandatory. Every round\'s submission must include a live, accessible link (not just source code) unless explicitly stated otherwise for that round.\nOriginal work during the event. Core problem-solving and building must happen during the hackathon window. Pre-built templates/boilerplate are allowed, but the core solution must be built live.\nNo plagiarism. Directly copying another team\'s solution or previously published projects will result in disqualification.\nTime is final. Late submissions after a round\'s deadline will not be scored, regardless of reason.\nTeam changes are not allowed once Round 1 begins.\nJudges\' decisions are final at every round.\nParticipants must follow all platform-specific submission instructions (to be shared before each round).',
+        tags: ['24h Hackathon', 'Build', 'Deploy', 'AI'],
         image: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&w=800&q=80',
-        organizer: 'PrivacyDAO'
-      },
+        organizer: 'HackWithUs'
+      }/*,
       {
         id: 'hack-4',
         title: 'GreenCode Eco-Tech 2026',
@@ -93,10 +93,10 @@ export const EVENTS_DATA = {
         tags: ['IoT', 'Embedded C', 'React', 'Sustainability'],
         image: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=800&q=80',
         organizer: 'EcoTech Foundation'
-      }
+      }*/
     ],
     concluded: [
-      {
+      /*{
         id: 'hack-5',
         title: 'Global CyberDefense Hackathon 2025',
         category: 'Cybersecurity',
@@ -110,12 +110,12 @@ export const EVENTS_DATA = {
         summary: 'Over 480 teams submitted 320 valid security defense systems within 48 continuous hacking hours.',
         tags: ['Security', 'Rust', 'eBPF', 'AI'],
         image: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80'
-      }
+      }*/
     ]
   },
   competitions: {
     ongoing: [
-      {
+      /*{
         id: 'comp-1',
         title: 'AlgoSprint #42: Dynamic Programming Arena',
         category: 'Competitive Programming',
@@ -128,10 +128,10 @@ export const EVENTS_DATA = {
         isFeatured: true,
         image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80',
         organizer: 'HackWithUs CodeLeague'
-      }
+      }*/
     ],
     upcoming: [
-      {
+      /*{
         id: 'comp-2',
         title: 'UI/UX Design Royale 2026',
         category: 'UI/UX & Product',
@@ -158,10 +158,10 @@ export const EVENTS_DATA = {
         tags: ['CTF', 'Pwn', 'Reverse Engineering', 'Crypto'],
         image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80',
         organizer: 'RedTeam Security'
-      }
+      }*/
     ],
     concluded: [
-      {
+      /*{
         id: 'comp-4',
         title: 'Data Science ML Speedrun 2025',
         category: 'Machine Learning',
@@ -175,12 +175,12 @@ export const EVENTS_DATA = {
         summary: 'Competitors optimized predictive model latency and accuracy over a 10GB streaming financial dataset.',
         tags: ['PyTorch', 'Scikit-Learn', 'Pandas', 'XGBoost'],
         image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80'
-      }
+      }*/
     ]
   },
   workshops: {
     ongoing: [
-      {
+      /*{
         id: 'work-1',
         title: 'Mastering Rust & WebAssembly for Ultra-Fast Web Apps',
         category: 'Systems & Web',
@@ -193,10 +193,10 @@ export const EVENTS_DATA = {
         isFeatured: true,
         image: 'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=800&q=80',
         organizer: 'Rust Foundation Lead Devs'
-      }
+      }*/
     ],
     upcoming: [
-      {
+      /*{
         id: 'work-2',
         title: 'Building Production-Ready LLM Agents from Scratch',
         category: 'AI Engineering',
@@ -223,10 +223,10 @@ export const EVENTS_DATA = {
         tags: ['Kubernetes', 'ArgoCD', 'Docker', 'Terraform'],
         image: 'https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?auto=format&fit=crop&w=800&q=80',
         organizer: 'CloudNative Guild'
-      }
+      }*/
     ],
     concluded: [
-      {
+      /*{
         id: 'work-4',
         title: 'Next.js 15 & Server Actions Architecture Workshop',
         category: 'Frontend Engineering',
@@ -239,12 +239,12 @@ export const EVENTS_DATA = {
         summary: 'Attended by 1,200+ frontend engineers learning server components, caching strategies, and streaming SSR.',
         tags: ['Next.js', 'React', 'TypeScript', 'TailwindCSS'],
         image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80'
-      }
+      }*/
     ]
   },
   quizzes: {
     ongoing: [
-      {
+      /*{
         id: 'quiz-1',
         title: 'Daily JavaScript Engine & V8 Internal Blitz Quiz',
         category: 'JavaScript & Web CS',
@@ -257,10 +257,10 @@ export const EVENTS_DATA = {
         isFeatured: true,
         image: 'https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?auto=format&fit=crop&w=800&q=80',
         organizer: 'JS Mastery Hub'
-      }
+      }*/
     ],
     upcoming: [
-      {
+      /*{
         id: 'quiz-2',
         title: 'System Design & Distributed Architecture Quiz',
         category: 'System Design',
@@ -287,10 +287,10 @@ export const EVENTS_DATA = {
         tags: ['Git', 'CLI', 'DevTools', 'Linux'],
         image: 'https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?auto=format&fit=crop&w=800&q=80',
         organizer: 'HackWithUs QuizMaster'
-      }
+      }*/
     ],
     concluded: [
-      {
+      /*{
         id: 'quiz-4',
         title: 'Weekly Computer Science Core Trivia #88',
         category: 'CS Fundamentals',
@@ -304,7 +304,7 @@ export const EVENTS_DATA = {
         summary: 'Over 3,100 developers participated in our weekly CS fundamentals trivia battle.',
         tags: ['CS Core', 'OS', 'Networking', 'Algorithms'],
         image: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=800&q=80'
-      }
+      }*/
     ]
   }
 };

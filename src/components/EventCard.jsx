@@ -1,10 +1,16 @@
 import React from 'react';
-import { Calendar, Users, Trophy, Clock, ArrowRight, Award } from 'lucide-react';
+import { Calendar, Users, Trophy, Clock, ArrowRight, Award, Info, ExternalLink } from 'lucide-react';
 
 export default function EventCard({ event, activeTab, onOpenModal }) {
   const isOngoing = activeTab === 'ongoing';
   const isUpcoming = activeTab === 'upcoming';
   const isConcluded = activeTab === 'concluded';
+
+  const handleUnstopClick = (e) => {
+    e.stopPropagation();
+    const targetUrl = event.unstopUrl || 'https://unstop.com';
+    window.open(targetUrl, '_blank', 'noopener,noreferrer');
+  };
 
   return (
     <div className="glass-card rounded-xl overflow-hidden flex flex-col justify-between group relative bg-white border-2 border-black">
@@ -132,37 +138,23 @@ export default function EventCard({ event, activeTab, onOpenModal }) {
             </div>
           )}
 
-          {/* Action Button */}
-          <div className="pt-2">
-            {isOngoing && (
-              <button
-                onClick={() => onOpenModal(event, 'join')}
-                className="w-full neo-btn-yellow py-3 px-4 rounded-lg flex items-center justify-center gap-2 font-mono text-xs uppercase tracking-wider font-extrabold"
-              >
-                Join Now
-                <ArrowRight className="w-4 h-4 stroke-[2.5]" />
-              </button>
-            )}
+          {/* Action Buttons: Info & Register Now (Unstop) */}
+          <div className="pt-2 grid grid-cols-2 gap-2">
+            <button
+              onClick={() => onOpenModal(event, isConcluded ? 'results' : 'info')}
+              className="w-full bg-white hover:bg-zinc-100 text-black font-mono text-xs uppercase tracking-wider font-black py-2.5 px-3 rounded-lg border-2 border-black shadow-neo flex items-center justify-center gap-1.5 transition-all"
+            >
+              <Info className="w-4 h-4 stroke-[2.5]" />
+              Info
+            </button>
 
-            {isUpcoming && (
-              <button
-                onClick={() => onOpenModal(event, 'register')}
-                className="w-full neo-btn-black py-3 px-4 rounded-lg flex items-center justify-center gap-2 font-mono text-xs uppercase tracking-wider"
-              >
-                Register Now
-                <Calendar className="w-4 h-4" />
-              </button>
-            )}
-
-            {isConcluded && (
-              <button
-                onClick={() => onOpenModal(event, 'results')}
-                className="w-full bg-white hover:bg-zinc-100 text-black font-mono text-xs uppercase tracking-wider font-extrabold py-3 px-4 rounded-lg border-2 border-black shadow-neo flex items-center justify-center gap-2 transition-all"
-              >
-                View Results & Winners
-                <Trophy className="w-4 h-4 text-black" />
-              </button>
-            )}
+            <button
+              onClick={handleUnstopClick}
+              className="w-full neo-btn-yellow py-2.5 px-3 rounded-lg flex items-center justify-center gap-1.5 font-mono text-xs uppercase tracking-wider font-black shadow-neo"
+            >
+              Register Now
+              <ExternalLink className="w-3.5 h-3.5 stroke-[2.5]" />
+            </button>
           </div>
 
         </div>

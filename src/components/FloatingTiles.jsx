@@ -8,7 +8,7 @@ export default function FloatingTiles({ onSelectSection }) {
       title: 'Hackathons',
       subtitle: 'Build solutions in 48 hours with global developer teams.',
       icon: Terminal,
-      badge: '2 Live',
+      badge: '1 Upcoming',
       colSpan: 'md:col-span-2 lg:col-span-2',
       image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80'
     },
@@ -17,7 +17,7 @@ export default function FloatingTiles({ onSelectSection }) {
       title: 'Competitions',
       subtitle: 'Test your algorithms & competitive programming limits.',
       icon: Trophy,
-      badge: '1 Live',
+      badge: 'Coming Soon',
       colSpan: 'md:col-span-1 lg:col-span-1',
       image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80'
     },
@@ -26,16 +26,16 @@ export default function FloatingTiles({ onSelectSection }) {
       title: 'Workshops',
       subtitle: 'Learn live from industry pros & principal software architects.',
       icon: Lightbulb,
-      badge: '1 Live',
+      badge: 'Coming Soon',
       colSpan: 'md:col-span-1 lg:col-span-1',
       image: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80'
     },
     {
       id: 'quizzes',
-      title: 'Daily Quizzes & CS Trivia',
+      title: 'Daily Quizzes & Trivia',
       subtitle: 'Fast-paced technical questions to test your JavaScript, Systems & CS core knowledge.',
       icon: HelpCircle,
-      badge: 'Daily Sprint',
+      badge: 'Coming Soon',
       colSpan: 'md:col-span-2 lg:col-span-4',
       image: 'https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?auto=format&fit=crop&w=800&q=80'
     }
@@ -76,7 +76,7 @@ export default function FloatingTiles({ onSelectSection }) {
                     <span className="w-2 h-2 rounded-full bg-black animate-pulse"></span>
                     {tile.badge}
                   </div>
-                  <div className="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center group-hover:bg-brand-yellow group-hover:text-black group-hover:rotate-45 transition-all">
+                  <div className="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center group-hover:bg-brand-yellow group-hover:text-white group-hover:rotate-45 transition-all">
                     <ArrowUpRight className="w-5 h-5 stroke-[2.5]" />
                   </div>
                 </div>
@@ -84,7 +84,7 @@ export default function FloatingTiles({ onSelectSection }) {
                 {/* Main Tile Details */}
                 <div className="z-10 mt-auto">
                   <div className="flex items-center gap-3 mb-2">
-                    <div className="p-2.5 rounded-lg bg-black text-white group-hover:bg-brand-yellow group-hover:text-black transition-colors">
+                    <div className="p-2.5 rounded-lg bg-black text-white group-hover:bg-brand-yellow group-hover:text-white transition-colors">
                       <Icon className="w-6 h-6 stroke-[2.5]" />
                     </div>
                     <h3 className="font-display text-2xl font-black text-black group-hover:underline">

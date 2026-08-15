@@ -65,7 +65,7 @@ export default function EventSection({ sectionMeta, events, onOpenModal }) {
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
           
           {/* Ongoing / Upcoming / Concluded Tabs */}
-          <div className="flex bg-white p-1 rounded-xl border-2 border-black w-full sm:w-auto shadow-neo">
+          <div className="flex bg-white p-1.5 rounded-xl border-2 border-black w-full sm:w-auto shadow-neo gap-1.5">
             {tabList.map((tab) => {
               const Icon = tab.icon;
               const isActive = activeTab === tab.id;
@@ -73,17 +73,17 @@ export default function EventSection({ sectionMeta, events, onOpenModal }) {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`flex-1 sm:flex-none flex items-center justify-center gap-2 px-6 py-2.5 rounded-lg font-mono text-xs uppercase tracking-wider font-extrabold transition-all duration-200 ${
+                  className={`flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg font-mono text-xs uppercase tracking-wider font-black transition-all duration-200 ${
                     isActive
-                      ? 'bg-black text-white shadow-neo'
-                      : 'text-black hover:bg-zinc-100'
+                      ? 'bg-brand-yellow text-black border-2 border-black shadow-neo'
+                      : 'bg-white text-black hover:bg-zinc-100 border-2 border-transparent'
                   }`}
                 >
-                  <Icon className={`w-4 h-4 ${isActive ? 'text-brand-yellow' : 'text-black'}`} />
+                  <Icon className="w-4 h-4 text-black stroke-[2.5]" />
                   <span>{tab.label}</span>
                   <span
                     className={`px-2 py-0.5 rounded-full text-[10px] font-black ${
-                      isActive ? 'bg-brand-yellow text-black' : 'bg-zinc-200 text-black'
+                      isActive ? 'bg-black text-brand-yellow' : 'bg-zinc-200 text-black'
                     }`}
                   >
                     {tab.count}

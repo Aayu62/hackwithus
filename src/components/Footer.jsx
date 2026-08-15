@@ -11,9 +11,7 @@ export default function Footer({ onSelectSection }) {
           {/* Company Info Column */}
           <div className="md:col-span-5 space-y-4">
             <div className="flex items-center gap-3 cursor-pointer" onClick={() => onSelectSection('home')}>
-              <div className="w-9 h-9 rounded-lg bg-brand-yellow text-black flex items-center justify-center font-bold border-2 border-black shadow-neo">
-                <Terminal className="w-5 h-5 stroke-[2.5]" />
-              </div>
+              <img src="/hwu_favicon.png" alt="HackWithUs Logo" className="w-14 h-14 object-contain" />
               <span className="font-display text-2xl font-black text-black tracking-tight">
                 HackWithUs
               </span>
