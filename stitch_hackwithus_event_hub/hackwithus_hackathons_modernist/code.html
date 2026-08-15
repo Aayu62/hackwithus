@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HackWithUs - Event Listing</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "on-surface-variant": "#333333",
+                "inverse-surface": "#111111",
+                "surface-container": "#f3f3f3",
+                "surface-subtle": "#fafafa",
+                "error-container": "#ffde00",
+                "surface-variant": "#e5e5e5",
+                "text-muted": "#666666",
+                "on-error-container": "#000000",
+                "on-primary-fixed-variant": "#000000",
+                "primary": "#ffde00",
+                "primary-container": "#ffde00",
+                "background": "#ffffff",
+                "surface-dim": "#dadada",
+                "primary-fixed": "#ffde00",
+                "tertiary": "#000000",
+                "surface-container-lowest": "#ffffff",
+                "on-tertiary-container": "#ffffff",
+                "surface": "#ffffff",
+                "secondary-fixed-dim": "#cccccc",
+                "tertiary-fixed": "#333333",
+                "outline": "#000000",
+                "on-tertiary": "#ffffff",
+                "on-secondary-fixed": "#000000",
+                "surface-container-low": "#f3f3f3",
+                "inverse-on-surface": "#ffffff",
+                "error": "#000000",
+                "tertiary-container": "#000000",
+                "on-surface": "#000000",
+                "tertiary-fixed-dim": "#666666",
+                "on-primary": "#000000",
+                "border-light": "#000000",
+                "surface-container-high": "#e8e8e8",
+                "on-primary-container": "#000000",
+                "surface-bright": "#ffffff",
+                "on-tertiary-fixed-variant": "#ffffff",
+                "on-primary-fixed": "#000000",
+                "on-error": "#000000",
+                "on-secondary-fixed-variant": "#333333",
+                "surface-tint": "#000000",
+                "on-background": "#000000",
+                "on-tertiary-fixed": "#ffffff",
+                "on-secondary": "#ffffff",
+                "secondary": "#000000",
+                "inverse-primary": "#e6c800",
+                "secondary-fixed": "#e5e5e5",
+                "outline-variant": "#000000",
+                "surface-container-highest": "#e2e2e2",
+                "secondary-container": "#000000",
+                "primary-fixed-dim": "#e6c800",
+                "on-secondary-container": "#ffffff"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.5rem",
+                "xl": "0.5rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "gutter": "24px",
+                "section-gap": "96px",
+                "container-max": "1200px",
+                "unit": "8px",
+                "margin-mobile": "20px"
+        },
+        "fontFamily": {
+                "display-lg": [
+                        "Be Vietnam Pro"
+                ],
+                "label-sm": [
+                        "Be Vietnam Pro"
+                ],
+                "display-lg-mobile": [
+                        "Be Vietnam Pro"
+                ],
+                "body-lg": [
+                        "Be Vietnam Pro"
+                ],
+                "headline-md": [
+                        "Be Vietnam Pro"
+                ],
+                "body-md": [
+                        "Be Vietnam Pro"
+                ]
+        },
+        "fontSize": {
+                "display-lg": [
+                        "48px",
+                        {
+                                "lineHeight": "1.1",
+                                "letterSpacing": "-0.03em",
+                                "fontWeight": "800"
+                        }
+                ],
+                "label-sm": [
+                        "12px",
+                        {
+                                "lineHeight": "1",
+                                "letterSpacing": "0.05em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "display-lg-mobile": [
+                        "32px",
+                        {
+                                "lineHeight": "1.2",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "800"
+                        }
+                ],
+                "body-lg": [
+                        "18px",
+                        {
+                                "lineHeight": "1.6",
+                                "fontWeight": "500"
+                        }
+                ],
+                "headline-md": [
+                        "24px",
+                        {
+                                "lineHeight": "1.4",
+                                "fontWeight": "700"
+                        }
+                ],
+                "body-md": [
+                        "16px",
+                        {
+                                "lineHeight": "1.5",
+                                "fontWeight": "500"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 600, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined[data-weight="fill"] {
+            font-variation-settings: 'FILL' 1, 'wght' 600, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+        
+        .bento-card {
+            background-color: #ffffff;
+            border: 2px solid #000000;
+            transition: all 0.3s ease;
+        }
+        
+        .bento-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 4px 4px 0px #000000;
+        }
+        
+        .glass-panel {
+            background: #ffffff;
+            border: 2px solid #000000;
+            box-shadow: 2px 2px 0px #000000;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #ffffff;
+            border-left: 2px solid #000000;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #000000;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background antialiased min-h-screen flex flex-col pt-16 pb-20 md:pb-0">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile h-16 bg-surface-container-lowest border-b-2 border-border-light md:px-gutter max-w-container-max mx-auto md:left-1/2 md:-translate-x-1/2">
+<div class="flex items-center gap-4">
+<button aria-label="Menu" class="text-on-surface hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="terminal">terminal</span>
+</button>
+<h1 class="font-display-lg-mobile text-display-lg-mobile md:font-headline-md md:text-headline-md font-extrabold text-on-surface tracking-tighter">HackWithUs</h1>
+</div>
+<!-- Desktop Nav -->
+<nav class="hidden md:flex items-center gap-8 font-label-sm text-label-sm uppercase tracking-widest">
+<a class="text-on-surface-variant hover:text-on-surface transition-colors duration-200" href="#">Home</a>
+<a class="text-on-surface font-bold hover:text-on-surface transition-colors duration-200 border-b-2 border-on-surface pb-1" href="#">Events</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors duration-200" href="#">Dashboard</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors duration-200" href="#">Community</a>
+</nav>
+<button aria-label="Notifications" class="text-on-surface hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+</header>
+<!-- Main Content -->
+<main class="flex-grow w-full max-w-container-max mx-auto px-margin-mobile md:px-gutter py-8">
+<!-- Page Header & Search -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-12">
+<div>
+<h2 class="font-display-lg text-display-lg text-on-surface mb-2 uppercase">Hackathons</h2>
+<p class="font-body-md text-body-md text-on-surface-variant font-medium">Discover, build, and conquer top-tier developer challenges.</p>
+</div>
+<div class="w-full md:w-96 relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface" data-icon="search">search</span>
+<input class="w-full bg-surface-container-lowest border-2 border-border-light rounded-none py-3 pl-12 pr-4 text-on-surface focus:outline-none focus:border-on-surface focus:ring-0 transition-all font-body-md text-body-md shadow-[2px_2px_0px_#000]" placeholder="Search events, tags..." type="text"/>
+</div>
+</div>
+<!-- Filters & Tabs -->
+<div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 mb-10">
+<!-- Tabs -->
+<div class="flex w-full lg:w-auto shadow-[2px_2px_0px_#000]">
+<button class="flex-1 lg:flex-none px-6 py-2 bg-on-surface text-surface font-label-sm text-label-sm uppercase tracking-wider border-2 border-on-surface transition-all">Ongoing</button>
+<button class="flex-1 lg:flex-none px-6 py-2 bg-surface text-on-surface hover:bg-surface-variant font-label-sm text-label-sm uppercase tracking-wider border-y-2 border-r-2 border-on-surface transition-all">Upcoming</button>
+<button class="flex-1 lg:flex-none px-6 py-2 bg-surface text-on-surface hover:bg-surface-variant font-label-sm text-label-sm uppercase tracking-wider border-y-2 border-r-2 border-on-surface transition-all">Concluded</button>
+</div>
+<!-- Filters -->
+<div class="flex flex-wrap gap-3 w-full lg:w-auto">
+<div class="relative group">
+<button class="flex items-center gap-2 px-4 py-2 bg-surface border-2 border-on-surface font-label-sm text-label-sm text-on-surface hover:bg-surface-variant transition-colors shadow-[2px_2px_0px_#000] uppercase tracking-wider">
+                        Category <span class="material-symbols-outlined text-[16px]" data-icon="keyboard_arrow_down">keyboard_arrow_down</span>
+</button>
+</div>
+<div class="relative group">
+<button class="flex items-center gap-2 px-4 py-2 bg-surface border-2 border-on-surface font-label-sm text-label-sm text-on-surface hover:bg-surface-variant transition-colors shadow-[2px_2px_0px_#000] uppercase tracking-wider">
+                        Difficulty <span class="material-symbols-outlined text-[16px]" data-icon="keyboard_arrow_down">keyboard_arrow_down</span>
+</button>
+</div>
+<div class="relative group">
+<button class="flex items-center gap-2 px-4 py-2 bg-surface border-2 border-on-surface font-label-sm text-label-sm text-on-surface hover:bg-surface-variant transition-colors shadow-[2px_2px_0px_#000] uppercase tracking-wider">
+                        Prize Pool <span class="material-symbols-outlined text-[16px]" data-icon="keyboard_arrow_down">keyboard_arrow_down</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Bento Grid Listings -->
+<div class="bento-grid">
+<!-- Featured Ongoing Hackathon (Large Card) -->
+<div class="col-span-12 lg:col-span-8 bento-card rounded-none overflow-hidden relative min-h-[400px] flex flex-col justify-end group border-2 border-on-surface">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="A futuristic, high-tech isometric workspace scene with glowing neon orange accents on deep charcoal surfaces, representing a high-octane coding competition environment. Clean, minimalist aesthetic with subtle atmospheric depth." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuALj-E57ttps3hxJQD-vAcy1r1wgwYEk0IEQY36asC7ngrnfomm0tuPb6hZ6IzJO_DtWAu0RK7mgWN7MrZk_oYPrI17nNjJIq_1Nf2sVFOuaBoyfEN1oxsQRo86id1JFccivW5hanfTyNBxm0vPVZXMKxfxSLkAdAtj2IH-gxVt42ReA-lMWOnAQ7gVbmCxN6OuR7PFQTr_cKi7D9wHW34eC7wd7PJd6f1aq_kNMhS-59mQG8a0K1DB'); filter: grayscale(100%);"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/90 to-transparent"></div>
+<div class="relative z-10 p-8 flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-none bg-primary border-2 border-on-surface text-on-surface font-label-sm text-label-sm uppercase tracking-widest font-bold shadow-[2px_2px_0px_#000]">
+<span class="w-2 h-2 rounded-full bg-on-surface animate-pulse"></span> Live
+                        </span>
+<div class="glass-panel px-4 py-2 rounded-none text-right">
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-1 uppercase tracking-widest">Ends In</p>
+<p class="font-headline-md text-headline-md text-on-surface font-bold">14:22:05</p>
+</div>
+</div>
+<div>
+<h3 class="font-display-lg-mobile text-display-lg-mobile text-on-surface mb-2 uppercase">Quantum Compute Challenge 2024</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl font-medium">Push the boundaries of distributed computing. Build high-performance applications leveraging the latest quantum SDKs.</p>
+</div>
+<div class="flex flex-wrap items-center gap-6 mt-4">
+<div class="flex items-center gap-2 bg-surface border-2 border-on-surface px-4 py-2 shadow-[2px_2px_0px_#000]">
+<span class="material-symbols-outlined text-on-surface" data-icon="trophy" data-weight="fill">trophy</span>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Prize Pool</p>
+<p class="font-body-md text-body-md text-on-surface font-bold">$50,000</p>
+</div>
+</div>
+<div class="flex items-center gap-2 bg-surface border-2 border-on-surface px-4 py-2 shadow-[2px_2px_0px_#000]">
+<span class="material-symbols-outlined text-on-surface" data-icon="group" data-weight="fill">group</span>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Participants</p>
+<p class="font-body-md text-body-md text-on-surface font-bold">1,240</p>
+</div>
+</div>
+<button class="ml-auto px-8 py-3 bg-primary hover:bg-on-surface text-on-surface hover:text-primary font-label-sm text-label-sm uppercase tracking-widest font-bold rounded-none border-2 border-on-surface shadow-[4px_4px_0px_#000] hover:shadow-none transition-all flex items-center gap-2 hover:translate-x-1 hover:translate-y-1">
+                            Join Now <span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Standard Ongoing Card 1 -->
+<div class="col-span-12 md:col-span-6 lg:col-span-4 bento-card rounded-none p-6 flex flex-col group border-2 border-on-surface">
+<div class="flex justify-between items-start mb-6">
+<div class="w-12 h-12 rounded-none bg-surface border-2 border-on-surface shadow-[2px_2px_0px_#000] flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface text-2xl" data-icon="smart_toy">smart_toy</span>
+</div>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-none bg-primary border-2 border-on-surface text-on-surface font-label-sm text-label-sm font-bold uppercase tracking-widest shadow-[2px_2px_0px_#000]">
+                        Live
+                    </span>
+</div>
+<h4 class="font-headline-md text-headline-md text-on-surface mb-2 uppercase">AI Agent Assembly</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 flex-grow font-medium">Develop autonomous agents that can collaborate to solve complex reasoning puzzles.</p>
+<div class="space-y-4">
+<div class="flex justify-between items-center pb-4 border-b-2 border-on-surface">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Time Left</span>
+<span class="font-body-md text-body-md text-on-surface font-bold">2d 14h 30m</span>
+</div>
+<div class="flex justify-between items-center pb-4 border-b-2 border-on-surface">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Prize</span>
+<span class="font-body-md text-body-md text-on-surface font-bold">$15,000</span>
+</div>
+<button class="w-full py-3 bg-primary hover:bg-on-surface text-on-surface hover:text-primary border-2 border-on-surface rounded-none font-label-sm text-label-sm uppercase tracking-widest font-bold shadow-[2px_2px_0px_#000] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all mt-2">
+                        Join Now
+                    </button>
+</div>
+</div>
+<!-- Standard Ongoing Card 2 -->
+<div class="col-span-12 md:col-span-6 lg:col-span-4 bento-card rounded-none p-6 flex flex-col group border-2 border-on-surface">
+<div class="flex justify-between items-start mb-6">
+<div class="w-12 h-12 rounded-none bg-surface border-2 border-on-surface shadow-[2px_2px_0px_#000] flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface text-2xl" data-icon="shield">shield</span>
+</div>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-none bg-primary border-2 border-on-surface text-on-surface font-label-sm text-label-sm font-bold uppercase tracking-widest shadow-[2px_2px_0px_#000]">
+                        Live
+                    </span>
+</div>
+<h4 class="font-headline-md text-headline-md text-on-surface mb-2 uppercase">Zero-Trust Security</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 flex-grow font-medium">Build robust authentication flows in a simulated hostile network environment.</p>
+<div class="space-y-4">
+<div class="flex justify-between items-center pb-4 border-b-2 border-on-surface">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Time Left</span>
+<span class="font-body-md text-body-md text-on-surface font-bold">5d 08h 15m</span>
+</div>
+<div class="flex justify-between items-center pb-4 border-b-2 border-on-surface">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Prize</span>
+<span class="font-body-md text-body-md text-on-surface font-bold">$20,000</span>
+</div>
+<button class="w-full py-3 bg-primary hover:bg-on-surface text-on-surface hover:text-primary border-2 border-on-surface rounded-none font-label-sm text-label-sm uppercase tracking-widest font-bold shadow-[2px_2px_0px_#000] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all mt-2">
+                        Join Now
+                    </button>
+</div>
+</div>
+<!-- Standard Upcoming Card (Visual Contrast) -->
+<div class="col-span-12 md:col-span-6 lg:col-span-4 bento-card rounded-none p-6 flex flex-col group border-2 border-dashed border-on-surface bg-surface-container">
+<div class="flex justify-between items-start mb-6">
+<div class="w-12 h-12 rounded-none bg-surface border-2 border-on-surface flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface text-2xl" data-icon="cloud">cloud</span>
+</div>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-none bg-surface border-2 border-on-surface text-on-surface font-label-sm text-label-sm font-bold uppercase tracking-widest shadow-[2px_2px_0px_#000]">
+                        Upcoming
+                    </span>
+</div>
+<h4 class="font-headline-md text-headline-md text-on-surface mb-2 uppercase">Cloud Native Sprint</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 flex-grow font-medium">Design highly available microservices architectures capable of auto-scaling under load.</p>
+<div class="space-y-4">
+<div class="flex justify-between items-center pb-4 border-b-2 border-on-surface/20">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Starts In</span>
+<span class="font-body-md text-body-md text-on-surface font-bold">Oct 24, 2024</span>
+</div>
+<div class="flex justify-between items-center pb-4 border-b-2 border-on-surface/20">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Prize</span>
+<span class="font-body-md text-body-md text-on-surface font-bold">$10,000</span>
+</div>
+<button class="w-full py-3 bg-surface hover:bg-on-surface text-on-surface hover:text-surface border-2 border-on-surface rounded-none font-label-sm text-label-sm uppercase tracking-widest font-bold shadow-[2px_2px_0px_#000] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all mt-2">
+                        Register
+                    </button>
+</div>
+</div>
+<!-- Standard Upcoming Card 2 -->
+<div class="col-span-12 md:col-span-6 lg:col-span-4 bento-card rounded-none p-6 flex flex-col group border-2 border-dashed border-on-surface bg-surface-container">
+<div class="flex justify-between items-start mb-6">
+<div class="w-12 h-12 rounded-none bg-surface border-2 border-on-surface flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface text-2xl" data-icon="deployed_code">deployed_code</span>
+</div>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-none bg-surface border-2 border-on-surface text-on-surface font-label-sm text-label-sm font-bold uppercase tracking-widest shadow-[2px_2px_0px_#000]">
+                        Upcoming
+                    </span>
+</div>
+<h4 class="font-headline-md text-headline-md text-on-surface mb-2 uppercase">Web3 Infrastructure</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 flex-grow font-medium">Develop decentralized indexers for emerging layer 2 blockchain networks.</p>
+<div class="space-y-4">
+<div class="flex justify-between items-center pb-4 border-b-2 border-on-surface/20">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Starts In</span>
+<span class="font-body-md text-body-md text-on-surface font-bold">Nov 05, 2024</span>
+</div>
+<div class="flex justify-between items-center pb-4 border-b-2 border-on-surface/20">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Prize</span>
+<span class="font-body-md text-body-md text-on-surface font-bold">$25,000</span>
+</div>
+<button class="w-full py-3 bg-surface hover:bg-on-surface text-on-surface hover:text-surface border-2 border-on-surface rounded-none font-label-sm text-label-sm uppercase tracking-widest font-bold shadow-[2px_2px_0px_#000] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all mt-2">
+                        Register
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-3 bg-surface-container-lowest border-t-2 border-on-surface md:hidden">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-on-surface px-4 py-1.5 transition-colors" href="#">
+<span class="material-symbols-outlined font-material-symbols" data-icon="home">home</span>
+<span class="font-label-sm text-label-sm mt-1 uppercase tracking-wider">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary text-on-surface border-2 border-on-surface shadow-[2px_2px_0px_#000] px-4 py-1.5 transition-all duration-300" href="#">
+<span class="material-symbols-outlined font-material-symbols" data-icon="event" data-weight="fill">event</span>
+<span class="font-label-sm text-label-sm mt-1 font-bold uppercase tracking-wider">Events</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-on-surface px-4 py-1.5 transition-colors" href="#">
+<span class="material-symbols-outlined font-material-symbols" data-icon="dashboard">dashboard</span>
+<span class="font-label-sm text-label-sm mt-1 uppercase tracking-wider">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-on-surface px-4 py-1.5 transition-colors" href="#">
+<span class="material-symbols-outlined font-material-symbols" data-icon="groups">groups</span>
+<span class="font-label-sm text-label-sm mt-1 uppercase tracking-wider">Community</span>
+</a>
+</nav>
+<!-- Footer -->
+<footer class="w-full bg-surface-container-lowest border-t-2 border-on-surface py-section-gap flat mt-section-gap hidden md:block">
+<div class="w-full flex flex-col md:flex-row justify-between items-center px-gutter max-w-container-max mx-auto">
+<div class="font-display-lg text-display-lg text-on-surface mb-6 md:mb-0 uppercase tracking-tighter">
+                HackWithUs
+            </div>
+<div class="flex gap-6 mb-6 md:mb-0">
+<a class="text-on-surface-variant hover:text-on-surface transition-all duration-200 hover:translate-x-1 font-label-sm text-label-sm uppercase tracking-widest font-bold" href="#">Terms</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-all duration-200 hover:translate-x-1 font-label-sm text-label-sm uppercase tracking-widest font-bold" href="#">Privacy</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-all duration-200 hover:translate-x-1 font-label-sm text-label-sm uppercase tracking-widest font-bold" href="#">Discord</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-all duration-200 hover:translate-x-1 font-label-sm text-label-sm uppercase tracking-widest font-bold" href="#">Contact</a>
+</div>
+<div class="font-body-md text-body-md text-on-surface-variant font-medium uppercase tracking-widest">
+                © 2024 HackWithUs. High-Octane Innovation.
+            </div>
+</div>
+</footer>
+</body></html>
