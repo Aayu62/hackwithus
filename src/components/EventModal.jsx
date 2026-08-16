@@ -19,30 +19,30 @@ export default function EventModal({ event, mode, onClose }) {
       <div className="bg-white border-2 border-black w-full max-w-3xl rounded-2xl shadow-neo-lg overflow-hidden relative flex flex-col max-h-[90vh]">
         
         {/* Header Bar */}
-        <div className="p-6 border-b-2 border-black flex items-start justify-between bg-zinc-50">
+        <div className="p-4 sm:p-6 border-b-2 border-black flex items-start justify-between bg-zinc-50 gap-2">
           <div>
-            <div className="flex flex-wrap items-center gap-2 mb-1.5">
+            <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-1.5">
               <span className="px-2.5 py-0.5 rounded bg-brand-yellow border border-black text-black font-mono text-[10px] font-black uppercase tracking-wider shadow-neo">
                 {event.category || 'Hackathon Event'}
               </span>
               {event.organizer && (
-                <span className="text-zinc-700 font-mono text-xs font-bold uppercase">
+                <span className="text-zinc-700 font-mono text-[11px] sm:text-xs font-bold uppercase">
                   • By {event.organizer}
                 </span>
               )}
             </div>
-            <h2 className="font-display text-2xl sm:text-3xl font-black text-black">{event.title}</h2>
+            <h2 className="font-display text-xl sm:text-3xl font-black text-black leading-tight">{event.title}</h2>
           </div>
           <button
             onClick={onClose}
-            className="p-2 text-black hover:bg-zinc-200 border-2 border-black rounded-lg transition-colors"
+            className="p-1.5 sm:p-2 text-black hover:bg-zinc-200 border-2 border-black rounded-lg transition-colors shrink-0"
           >
-            <X className="w-6 h-6" />
+            <X className="w-5 h-5 sm:w-6 sm:h-6" />
           </button>
         </div>
 
         {/* Modal Body */}
-        <div className="p-6 overflow-y-auto space-y-6 flex-1 text-black">
+        <div className="p-4 sm:p-6 overflow-y-auto space-y-5 sm:space-y-6 flex-1 text-black">
 
           {/* Quick Metrics Bar */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">

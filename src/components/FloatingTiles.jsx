@@ -68,31 +68,31 @@ export default function FloatingTiles({ onSelectSection }) {
               <div
                 key={tile.id}
                 onClick={() => onSelectSection(tile.id)}
-                className={`glass-card ${tile.colSpan} rounded-xl p-8 flex flex-col justify-between group cursor-pointer relative min-h-[260px] overflow-hidden`}
+                className={`glass-card ${tile.colSpan} rounded-xl p-5 sm:p-8 flex flex-col justify-between group cursor-pointer relative min-h-[220px] sm:min-h-[260px] overflow-hidden`}
               >
                 {/* Top Badge & Link Arrow */}
-                <div className="flex items-start justify-between mb-6 z-10">
-                  <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-brand-yellow text-black border-2 border-black font-mono text-xs font-black tracking-wider">
-                    <span className="w-2 h-2 rounded-full bg-black animate-pulse"></span>
+                <div className="flex items-start justify-between mb-4 sm:mb-6 z-10 gap-2">
+                  <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-brand-yellow text-black border-2 border-black font-mono text-[10px] sm:text-xs font-black tracking-wider">
+                    <span className="w-1.5 h-1.5 rounded-full bg-black animate-pulse"></span>
                     {tile.badge}
                   </div>
-                  <div className="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center group-hover:bg-brand-yellow group-hover:text-white group-hover:rotate-45 transition-all">
-                    <ArrowUpRight className="w-5 h-5 stroke-[2.5]" />
+                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-black text-white flex items-center justify-center group-hover:bg-brand-yellow group-hover:text-white group-hover:rotate-45 transition-all shrink-0">
+                    <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 stroke-[2.5]" />
                   </div>
                 </div>
 
                 {/* Main Tile Details */}
                 <div className="z-10 mt-auto">
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="p-2.5 rounded-lg bg-black text-white group-hover:bg-brand-yellow group-hover:text-white transition-colors">
-                      <Icon className="w-6 h-6 stroke-[2.5]" />
+                  <div className="flex items-center gap-2.5 sm:gap-3 mb-2">
+                    <div className="p-2 sm:p-2.5 rounded-lg bg-black text-white group-hover:bg-brand-yellow group-hover:text-white transition-colors shrink-0">
+                      <Icon className="w-5 h-5 sm:w-6 sm:h-6 stroke-[2.5]" />
                     </div>
-                    <h3 className="font-display text-2xl font-black text-black group-hover:underline">
+                    <h3 className="font-display text-lg sm:text-2xl font-black text-black group-hover:underline">
                       {tile.title}
                     </h3>
                   </div>
 
-                  <p className="font-body text-zinc-700 text-sm font-medium line-clamp-2 leading-relaxed">
+                  <p className="font-body text-zinc-700 text-xs sm:text-sm font-medium line-clamp-2 leading-relaxed">
                     {tile.subtitle}
                   </p>
                 </div>

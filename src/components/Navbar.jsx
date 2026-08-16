@@ -46,14 +46,14 @@ export default function Navbar({ activeSection, setActiveSection }) {
         {/* Brand Logo */}
         <div 
           onClick={() => handleNavClick('home')}
-          className="flex items-center gap-3 cursor-pointer group"
+          className="flex items-center gap-2 sm:gap-3 cursor-pointer group"
         >
-          <img src="/hwu_favicon.png" alt="HackWithUs Logo" className="w-14 h-14 object-contain group-hover:scale-105 transition-transform" />
+          <img src="/hwu_favicon.png" alt="HackWithUs Logo" className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 object-contain group-hover:scale-105 transition-transform" />
           <div className="flex flex-col">
-            <span className="font-display text-2xl font-extrabold tracking-tight text-black group-hover:text-brand-yellow transition-colors flex items-center gap-1.5">
+            <span className="font-display text-xl sm:text-2xl font-extrabold tracking-tight text-black group-hover:text-brand-yellow transition-colors flex items-center gap-1.5">
               HackWithUs
             </span>
-            <span className="text-[10px] font-mono tracking-widest text-zinc-600 uppercase -mt-1 font-bold">Innovate • Compete • Grow</span>
+            <span className="hidden sm:block text-[10px] font-mono tracking-widest text-zinc-600 uppercase -mt-1 font-bold">Innovate • Compete • Grow</span>
           </div>
         </div>
 
@@ -80,14 +80,14 @@ export default function Navbar({ activeSection, setActiveSection }) {
         </nav>
 
         {/* Action Buttons & Notifications */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3">
           <div className="relative" ref={notificationRef}>
             <button
               onClick={() => setNotificationsOpen(!notificationsOpen)}
               className="relative p-2 rounded-lg text-black hover:bg-zinc-100 border-2 border-black transition-colors flex items-center justify-center"
               title="Notifications"
             >
-              <svg className="w-6 h-6 fill-current" viewBox="14 17 28 22">
+              <svg className="w-5 h-5 sm:w-6 sm:h-6 fill-current" viewBox="14 17 28 22">
                 <path
                   d="M 28 38 c 1.105 0 2 -0.895 2 -2 h -4 c 0 1.105 0.895 2 2 2 Z m 0 -20 c 3.441 0 6.882 3.529 7 6.697 v 3.636 s 2 1.167 2 2.672 c 0 2.043 -1.34 2.995 -2.993 2.995 h -12.015 c -1.64 0 -2.993 -1 -2.993 -2.995 v -0.509 c 0 -0.552 0.385 -1.22 0.86 -1.497 l 1.14 -0.665 v -3.636 c 0.118 -3.168 3.559 -6.697 7 -6.697 Z"
                 />
@@ -96,12 +96,12 @@ export default function Navbar({ activeSection, setActiveSection }) {
 
             {/* Notifications Dropdown Popup */}
             {notificationsOpen && (
-              <div className="absolute right-0 mt-3 w-80 bg-white border-2 border-black shadow-neo-lg rounded-xl p-4 z-50">
+              <div className="absolute right-0 mt-3 w-[calc(100vw-2rem)] sm:w-80 max-w-xs bg-white border-2 border-black shadow-neo-lg rounded-xl p-4 z-50">
                 <div className="flex items-center justify-between border-b-2 border-black pb-2 mb-3">
                   <span className="font-mono text-xs text-black uppercase font-extrabold tracking-wider flex items-center gap-1">
                     <Flame className="w-3.5 h-3.5 fill-black" /> Live Updates
                   </span>
-                  <span className="text-[10px] bg-brand-yellow text-black font-bold px-2 py-0.5 border border-black rounded">3 New</span>
+                  <span className="text-[10px] bg-brand-yellow text-black font-bold px-2 py-0.5 border border-black rounded">1 New</span>
                 </div>
                 <div className="space-y-3 text-xs">
                   <div className="p-3 bg-zinc-50 rounded-lg border-2 border-black hover:bg-brand-yellow/20 transition-colors">

@@ -6,12 +6,12 @@ export default function Footer({ onSelectSection }) {
     <footer className="bg-white border-t-2 border-black text-black pt-16 pb-12 font-body">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b-2 border-black">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-12 gap-8 sm:gap-10 pb-12 border-b-2 border-black">
           
           {/* Company Info Column */}
-          <div className="md:col-span-5 space-y-4">
+          <div className="sm:col-span-2 md:col-span-5 space-y-4">
             <div className="flex items-center gap-3 cursor-pointer" onClick={() => onSelectSection('home')}>
-              <img src="/hwu_favicon.png" alt="HackWithUs Logo" className="w-14 h-14 object-contain" />
+              <img src="/hwu_favicon.png" alt="HackWithUs Logo" className="w-12 h-12 sm:w-14 sm:h-14 object-contain" />
               <span className="font-display text-2xl font-black text-black tracking-tight">
                 HackWithUs
               </span>
@@ -22,7 +22,7 @@ export default function Footer({ onSelectSection }) {
             </p>
 
             {/* Social Media Links */}
-            <div className="flex items-center gap-3 pt-2">
+            <div className="flex items-center gap-2.5 sm:gap-3 pt-2 flex-wrap">
               <a href="https://github.com" target="_blank" rel="noreferrer" className="w-9 h-9 rounded-lg bg-white border-2 border-black text-black hover:bg-brand-yellow flex items-center justify-center transition-colors shadow-neo">
                 <Github className="w-4 h-4" />
               </a>

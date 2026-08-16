@@ -40,10 +40,10 @@ export default function EventSection({ sectionMeta, events, onOpenModal }) {
               <span className="w-2.5 h-2.5 rounded-full bg-brand-yellow border border-black"></span>
               {sectionMeta.tagline || 'HackWithUs Arena'}
             </div>
-            <h1 className="font-display text-4xl sm:text-5xl font-black text-black uppercase tracking-tight mb-3">
+            <h1 className="font-display text-3xl sm:text-4xl md:text-5xl font-black text-black uppercase tracking-tight mb-3">
               {sectionMeta.title}
             </h1>
-            <p className="font-body text-zinc-700 text-base max-w-2xl leading-relaxed font-semibold">
+            <p className="font-body text-zinc-700 text-sm sm:text-base max-w-2xl leading-relaxed font-semibold">
               {sectionMeta.subtitle}
             </p>
           </div>
@@ -62,10 +62,10 @@ export default function EventSection({ sectionMeta, events, onOpenModal }) {
         </div>
 
         {/* Tab Controls & Filters Bar */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 mb-8">
           
           {/* Ongoing / Upcoming / Concluded Tabs */}
-          <div className="flex bg-white p-1.5 rounded-xl border-2 border-black w-full sm:w-auto shadow-neo gap-1.5">
+          <div className="flex bg-white p-1 sm:p-1.5 rounded-xl border-2 border-black w-full sm:w-auto shadow-neo gap-1 sm:gap-1.5 overflow-x-auto">
             {tabList.map((tab) => {
               const Icon = tab.icon;
               const isActive = activeTab === tab.id;
@@ -73,16 +73,16 @@ export default function EventSection({ sectionMeta, events, onOpenModal }) {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg font-mono text-xs uppercase tracking-wider font-black transition-all duration-200 ${
+                  className={`flex-1 sm:flex-none flex items-center justify-center gap-1.5 sm:gap-2 px-2.5 sm:px-5 py-2.5 rounded-lg font-mono text-[11px] sm:text-xs uppercase tracking-wider font-black transition-all duration-200 ${
                     isActive
                       ? 'bg-brand-yellow text-black border-2 border-black shadow-neo'
                       : 'bg-white text-black hover:bg-zinc-100 border-2 border-transparent'
                   }`}
                 >
-                  <Icon className="w-4 h-4 text-black stroke-[2.5]" />
+                  <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-black stroke-[2.5] shrink-0" />
                   <span>{tab.label}</span>
                   <span
-                    className={`px-2 py-0.5 rounded-full text-[10px] font-black ${
+                    className={`px-1.5 py-0.5 rounded-full text-[10px] font-black ${
                       isActive ? 'bg-black text-brand-yellow' : 'bg-zinc-200 text-black'
                     }`}
                   >
@@ -94,12 +94,12 @@ export default function EventSection({ sectionMeta, events, onOpenModal }) {
           </div>
 
           {/* Difficulty Filter Dropdown */}
-          <div className="flex items-center gap-2 self-end sm:self-auto">
-            <Filter className="w-4 h-4 text-black" />
+          <div className="flex items-center justify-end gap-2 w-full sm:w-auto">
+            <Filter className="w-4 h-4 text-black shrink-0" />
             <select
               value={selectedDifficulty}
               onChange={(e) => setSelectedDifficulty(e.target.value)}
-              className="bg-white border-2 border-black text-black font-mono text-xs font-bold px-3 py-2.5 rounded-lg focus:outline-none shadow-neo"
+              className="bg-white border-2 border-black text-black font-mono text-xs font-bold px-3 py-2.5 rounded-lg focus:outline-none shadow-neo cursor-pointer"
             >
               <option value="All">All Difficulties</option>
               <option value="Advanced">Advanced</option>
