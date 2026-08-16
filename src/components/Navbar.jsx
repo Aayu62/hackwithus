@@ -84,7 +84,7 @@ export default function Navbar({ activeSection, setActiveSection }) {
           <div className="relative" ref={notificationRef}>
             <button
               onClick={() => setNotificationsOpen(!notificationsOpen)}
-              className="relative p-2 rounded-lg text-black hover:bg-zinc-100 border-2 border-black transition-colors flex items-center justify-center"
+              className="relative p-2 rounded-lg text-black hover:bg-zinc-100 border-2 border-black transition-colors flex items-center shadow-neo justify-center"
               title="Notifications"
             >
               <svg className="w-5 h-5 sm:w-6 sm:h-6 fill-current" viewBox="14 17 28 22">

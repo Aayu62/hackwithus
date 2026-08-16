@@ -8,7 +8,7 @@ export default function Hero({ onExploreClick }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
         
         {/* Top Tagline Badge */}
-        <div className="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-4 sm:py-1.5 rounded-full bg-brand-yellow text-black border-2 border-black font-mono text-[10px] sm:text-xs font-black uppercase tracking-wider mb-4 shadow-neo max-w-full">
+        <div className="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-4 sm:py-1.5 rounded-full text-black border-2 border-black font-mono text-[10px] sm:text-xs font-black uppercase tracking-wider mb-4 shadow-neo max-w-full">
           <Flame className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-black shrink-0" />
           <span className="truncate">The Ultimate Hackathon & Event Hub</span>
         </div>
