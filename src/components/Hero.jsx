@@ -8,14 +8,14 @@ export default function Hero({ onExploreClick }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
         
         {/* Top Tagline Badge */}
-        <div className="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-4 sm:py-1.5 rounded-full text-black border-2 border-black font-mono text-[10px] sm:text-xs font-black uppercase tracking-wider mb-4 shadow-neo max-w-full">
+        <div className="cursor-target inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-4 sm:py-1.5 rounded-full text-black border-2 border-black font-mono text-[10px] sm:text-xs font-black uppercase tracking-wider mb-4 shadow-neo max-w-full">
           <Flame className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-black shrink-0" />
           <span className="truncate">The Ultimate Hackathon & Event Hub</span>
         </div>
 
         {/* Hero Title */}
         <h1 className="font-display text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight text-black max-w-5xl mx-auto leading-tight sm:leading-none uppercase mb-4">
-          Innovate. <span className="bg-brand-yellow px-2 sm:px-3 py-0.5 sm:py-1 border-2 border-black shadow-neo inline-block my-1">Compete.</span> Grow.
+          Innovate. <span className="cursor-target cursor-pointer bg-brand-yellow px-2 sm:px-3 py-0.5 sm:py-1 border-2 border-black shadow-neo inline-block my-1">Compete.</span> Grow.
         </h1>
 
         {/* Hero Description */}

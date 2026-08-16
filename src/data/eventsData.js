@@ -33,6 +33,26 @@ export const SECTION_METADATA = {
   }
 };
 
+// Independent Featured & Trending Events list for Homepage
+export const FEATURED_EVENTS = [
+  {
+    id: 'hack-1',
+    title: 'NO LIMITS. constraints//Zero',
+    category: 'Build & Deploy',
+    difficulty: 'Beginner',
+    prizePool: '₹20000',
+    startsIn: '30 Days',
+    startDate: 'Sep 30, 2026',
+    regDeadline: 'Sep 29, 2026',
+    status: 'UPCOMING', // 'LIVE' | 'UPCOMING'
+    description: 'NO LIMITS. CONSTRAINTS//ZERO is a no-limits build-and-ship hackathon for students and developers who want to test how far they can push an idea — from a blank repo to a live, deployed product — under real time pressure and real constraints.\n\nThere are no restrictions on how you build. Use AI. Use agents. Use whatever tools, APIs, or scraps of infrastructure you can get your hands on. The only rule that matters: by the end, it has to be live. Not a mockup. Not a slide deck. A real, working, deployed link.',
+    tags: ['24h Hackathon', 'Build', 'Deploy', 'AI'],
+    image: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&w=800&q=80',
+    organizer: 'HackWithUs',
+    unstopUrl: 'https://unstop.com'
+  }
+];
+
 export const EVENTS_DATA = {
   hackathons: {
     ongoing: [
@@ -71,7 +91,7 @@ export const EVENTS_DATA = {
         title: 'NO LIMITS. constraints//Zero',
         category: 'Build & Deploy',
         difficulty: 'Begineer',
-        prizePool: '₹9000',
+        prizePool: '₹20000',
         startsIn: '30 Days',
         startDate: 'Sep 30, 2026',
         regDeadline: 'Sep 29, 2026',

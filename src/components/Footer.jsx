@@ -1,7 +1,7 @@
 import React from 'react';
-import { Terminal, Github, Twitter, Disc as Discord, Linkedin, Youtube } from 'lucide-react';
+import { Instagram, Youtube, Linkedin, Mail, MessageCircle } from 'lucide-react';
 
-export default function Footer({ onSelectSection }) {
+export default function Footer({ onSelectSection, onOpenInfoModal }) {
   return (
     <footer className="bg-white border-t-2 border-black text-black pt-16 pb-12 font-body">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -23,20 +23,25 @@ export default function Footer({ onSelectSection }) {
 
             {/* Social Media Links */}
             <div className="flex items-center gap-2.5 sm:gap-3 pt-2 flex-wrap">
-              <a href="https://github.com" target="_blank" rel="noreferrer" className="w-9 h-9 rounded-lg bg-white border-2 border-black text-black hover:bg-brand-yellow flex items-center justify-center transition-colors shadow-neo">
-                <Github className="w-4 h-4" />
+              {/* Instagram */}
+              <a href="https://instagram.com" target="_blank" rel="noreferrer" title="Instagram" className="w-9 h-9 rounded-lg bg-white border-2 border-black text-black hover:bg-brand-yellow flex items-center justify-center transition-colors shadow-neo">
+                <Instagram className="w-4 h-4" />
               </a>
-              <a href="https://twitter.com" target="_blank" rel="noreferrer" className="w-9 h-9 rounded-lg bg-white border-2 border-black text-black hover:bg-brand-yellow flex items-center justify-center transition-colors shadow-neo">
-                <Twitter className="w-4 h-4" />
+              {/* WhatsApp */}
+              <a href="https://wa.me/" target="_blank" rel="noreferrer" title="WhatsApp" className="w-9 h-9 rounded-lg bg-white border-2 border-black text-black hover:bg-brand-yellow flex items-center justify-center transition-colors shadow-neo">
+                <MessageCircle className="w-4 h-4" />
               </a>
-              <a href="https://discord.com" target="_blank" rel="noreferrer" className="w-9 h-9 rounded-lg bg-white border-2 border-black text-black hover:bg-brand-yellow flex items-center justify-center transition-colors shadow-neo">
-                <Discord className="w-4 h-4" />
+              {/* YouTube */}
+              <a href="https://youtube.com" target="_blank" rel="noreferrer" title="YouTube" className="w-9 h-9 rounded-lg bg-white border-2 border-black text-black hover:bg-brand-yellow flex items-center justify-center transition-colors shadow-neo">
+                <Youtube className="w-4 h-4" />
               </a>
-              <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="w-9 h-9 rounded-lg bg-white border-2 border-black text-black hover:bg-brand-yellow flex items-center justify-center transition-colors shadow-neo">
+              {/* LinkedIn */}
+              <a href="https://linkedin.com" target="_blank" rel="noreferrer" title="LinkedIn" className="w-9 h-9 rounded-lg bg-white border-2 border-black text-black hover:bg-brand-yellow flex items-center justify-center transition-colors shadow-neo">
                 <Linkedin className="w-4 h-4" />
               </a>
-              <a href="https://youtube.com" target="_blank" rel="noreferrer" className="w-9 h-9 rounded-lg bg-white border-2 border-black text-black hover:bg-brand-yellow flex items-center justify-center transition-colors shadow-neo">
-                <Youtube className="w-4 h-4" />
+              {/* Gmail / Mail */}
+              <a href="mailto:contact@hackwithus.in" target="_blank" rel="noreferrer" title="Gmail" className="w-9 h-9 rounded-lg bg-white border-2 border-black text-black hover:bg-brand-yellow flex items-center justify-center transition-colors shadow-neo">
+                <Mail className="w-4 h-4" />
               </a>
             </div>
           </div>
@@ -94,11 +99,17 @@ export default function Footer({ onSelectSection }) {
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs font-mono text-zinc-700 font-bold gap-4">
           <p>© 2026 HackWithUs Inc. All rights reserved.</p>
           <div className="flex items-center gap-4">
-            <a href="#" className="hover:underline">Privacy Policy</a>
+            <button onClick={() => onOpenInfoModal('privacy')} className="hover:underline hover:text-black">
+              Privacy Policy
+            </button>
             <span>•</span>
-            <a href="#" className="hover:underline">Terms of Service</a>
+            <button onClick={() => onOpenInfoModal('terms')} className="hover:underline hover:text-black">
+              Terms of Service
+            </button>
             <span>•</span>
-            <a href="#" className="hover:underline">Brand Kit</a>
+            <button onClick={() => onOpenInfoModal('about')} className="hover:underline hover:text-black">
+              About Us
+            </button>
           </div>
         </div>
 
