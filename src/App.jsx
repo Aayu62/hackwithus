@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import FloatingTiles from './components/FloatingTiles';
@@ -8,11 +8,15 @@ import EventModal from './components/EventModal';
 import Footer from './components/Footer';
 import TargetCursor from './components/TargetCursor';
 import InfoModal from './components/InfoModal';
+import NoLimitHackathonPage from './components/NoLimitHackathonPage';
 
 import { SECTION_METADATA, EVENTS_DATA, FEATURED_EVENTS } from './data/eventsData';
 import { Flame, ArrowRight, Info, ExternalLink } from 'lucide-react';
 
 export default function App() {
+  const [currentPath, setCurrentPath] = useState(
+    typeof window !== 'undefined' ? window.location.pathname : '/'
+  );
   const [activeSection, setActiveSection] = useState('home'); // 'home' | 'hackathons' | 'competitions' | 'workshops' | 'quizzes'
   const [infoModalType, setInfoModalType] = useState(null); // 'privacy' | 'terms' | 'about' | null
   const [modalState, setModalState] = useState({
@@ -21,12 +25,18 @@ export default function App() {
     mode: 'join' // 'join' | 'register' | 'results'
   });
 
-  const handleOpenModal = (event, mode) => {
-    setModalState({
-      isOpen: true,
-      event,
-      mode
-    });
+  useEffect(() => {
+    const handlePopState = () => {
+      setCurrentPath(window.location.pathname);
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  const handleOpenHackathonPage = (event) => {
+    window.history.pushState({}, '', '/NOLIMIT_Hackathon');
+    setCurrentPath('/NOLIMIT_Hackathon');
+    window.scrollTo({ top: 0, behavior: 'instant' });
   };
 
   const handleCloseModal = () => {
@@ -36,6 +46,24 @@ export default function App() {
       mode: 'join'
     });
   };
+
+  // If path is /NOLIMIT_Hackathon, render the completely black & blank page
+  if (currentPath.toLowerCase().includes('nolimit_hackathon')) {
+    return (
+      <>
+        <TargetCursor
+          spinDuration={3}
+          hideDefaultCursor={true}
+          parallaxOn={true}
+          hoverDuration={0.2}
+          cursorColor="#ffffff"
+          cursorColorOnTarget="#ffffff"
+          targetSelector=".cursor-target, button, a"
+        />
+        <NoLimitHackathonPage />
+      </>
+    );
+  }
 
   return (
     <div className="bg-white text-black min-h-screen flex flex-col font-body selection:bg-brand-yellow selection:text-black">
@@ -92,7 +120,7 @@ export default function App() {
                     <EventSectionCardPreview
                       key={event.id}
                       event={event}
-                      onOpenModal={handleOpenModal}
+                      onOpenHackathonPage={handleOpenHackathonPage}
                     />
                   ))}
                 </div>
@@ -105,7 +133,7 @@ export default function App() {
           <EventSection
             sectionMeta={SECTION_METADATA[activeSection]}
             events={EVENTS_DATA[activeSection]}
-            onOpenModal={handleOpenModal}
+            onOpenHackathonPage={handleOpenHackathonPage}
           />
         )}
       </main>
@@ -135,7 +163,7 @@ export default function App() {
 }
 
 // Inline Helper Preview Card for Homepage Featured Events
-function EventSectionCardPreview({ event, onOpenModal }) {
+function EventSectionCardPreview({ event, onOpenHackathonPage }) {
   return (
     <div className="neo-card p-6 rounded-xl bg-white border-2 border-black hover:border-black transition-all flex flex-col justify-between group">
       <div>
@@ -155,21 +183,13 @@ function EventSectionCardPreview({ event, onOpenModal }) {
         </p>
       </div>
 
-      <div className="pt-4 border-t-2 border-black flex items-center justify-between gap-2">
+      <div className="pt-4 border-t-2 border-black">
         <button
-          onClick={() => onOpenModal(event, 'info')}
-          className="flex-1 bg-white hover:bg-zinc-100 text-black font-mono text-xs uppercase tracking-wider font-black py-2 px-3 rounded-lg border-2 border-black shadow-neo flex items-center justify-center gap-1 transition-all"
+          onClick={() => onOpenHackathonPage(event)}
+          className="w-full neo-btn-yellow text-xs font-mono py-2.5 px-4 rounded-lg font-black flex items-center justify-center gap-2 shadow-neo border-2 border-black transition-all"
         >
-          <Info className="w-3.5 h-3.5 stroke-[2.5]" />
-          Info
-        </button>
-
-        <button
-          onClick={() => window.open(event.unstopUrl || 'https://unstop.com', '_blank', 'noopener,noreferrer')}
-          className="flex-1 neo-btn-yellow text-xs font-mono py-2 px-3 rounded-lg font-black flex items-center justify-center gap-1 shadow-neo"
-        >
-          Register
-          <ExternalLink className="w-3.5 h-3.5 stroke-[2.5]" />
+          Open
+          <ArrowRight className="w-4 h-4 stroke-[2.5]" />
         </button>
       </div>
     </div>

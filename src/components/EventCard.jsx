@@ -1,7 +1,7 @@
 import React from 'react';
 import { Calendar, Users, Trophy, Clock, ArrowRight, Award, Info, ExternalLink } from 'lucide-react';
 
-export default function EventCard({ event, activeTab, onOpenModal }) {
+export default function EventCard({ event, activeTab, onOpenHackathonPage }) {
   const isOngoing = activeTab === 'ongoing';
   const isUpcoming = activeTab === 'upcoming';
   const isConcluded = activeTab === 'concluded';
@@ -138,22 +138,14 @@ export default function EventCard({ event, activeTab, onOpenModal }) {
             </div>
           )}
 
-          {/* Action Buttons: Info & Register Now (Unstop) */}
-          <div className="pt-2 grid grid-cols-2 gap-2">
+          {/* Action Button: Single "Open" button redirecting to hackathon page */}
+          <div className="pt-2">
             <button
-              onClick={() => onOpenModal(event, isConcluded ? 'results' : 'info')}
-              className="w-full bg-white hover:bg-zinc-100 text-black font-mono text-xs uppercase tracking-wider font-black py-2.5 px-3 rounded-lg border-2 border-black shadow-neo flex items-center justify-center gap-1.5 transition-all"
+              onClick={() => onOpenHackathonPage && onOpenHackathonPage(event)}
+              className="w-full neo-btn-yellow py-2.5 px-4 rounded-lg flex items-center justify-center gap-2 font-mono text-xs uppercase tracking-wider font-black shadow-neo border-2 border-black transition-all"
             >
-              <Info className="w-4 h-4 stroke-[2.5]" />
-              Info
-            </button>
-
-            <button
-              onClick={handleUnstopClick}
-              className="w-full neo-btn-yellow py-2.5 px-3 rounded-lg flex items-center justify-center gap-1.5 font-mono text-xs uppercase tracking-wider font-black shadow-neo"
-            >
-              Register Now
-              <ExternalLink className="w-3.5 h-3.5 stroke-[2.5]" />
+              Open
+              <ArrowRight className="w-4 h-4 stroke-[2.5]" />
             </button>
           </div>
 

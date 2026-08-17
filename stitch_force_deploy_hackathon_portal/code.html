@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NO LIMITS zero//constraints</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-surface": "#dae6d2",
+                        "primary-fixed-dim": "#00e639",
+                        "surface": "#0c160a",
+                        "surface-mid": "#1a1a1a",
+                        "on-tertiary-fixed-variant": "#004e5a",
+                        "surface-bright": "#313c2e",
+                        "on-secondary-fixed-variant": "#454747",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "on-background": "#dae6d2",
+                        "on-primary": "#003907",
+                        "surface-container-low": "#141e12",
+                        "surface-dim": "#0c160a",
+                        "tertiary": "#edfbff",
+                        "secondary-fixed": "#e2e2e2",
+                        "terminal-green": "#00ff41",
+                        "inverse-on-surface": "#283326",
+                        "error-container": "#93000a",
+                        "on-surface-variant": "#b9ccb2",
+                        "on-error": "#690005",
+                        "surface-container-high": "#222d20",
+                        "surface-container-highest": "#2d382a",
+                        "surface-void": "#000000",
+                        "tertiary-container": "#8beaff",
+                        "on-primary-container": "#007117",
+                        "inverse-primary": "#006e16",
+                        "error": "#ffb4ab",
+                        "on-secondary": "#2f3131",
+                        "on-tertiary": "#00363f",
+                        "on-tertiary-fixed": "#001f25",
+                        "secondary": "#c6c6c7",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "primary": "#ebffe2",
+                        "surface-container": "#182216",
+                        "background": "#0c160a",
+                        "tertiary-fixed-dim": "#00daf8",
+                        "outline-variant": "#3b4b37",
+                        "on-primary-fixed": "#002203",
+                        "surface-variant": "#2d382a",
+                        "on-tertiary-container": "#006a7a",
+                        "on-secondary-container": "#b4b5b5",
+                        "surface-container-lowest": "#071106",
+                        "tertiary-fixed": "#a4eeff",
+                        "primary-container": "#00ff41",
+                        "surface-low": "#0a0a0a",
+                        "warning-amber": "#ffb000",
+                        "on-primary-fixed-variant": "#00530e",
+                        "on-error-container": "#ffdad6",
+                        "secondary-container": "#454747",
+                        "on-surface": "#dae6d2",
+                        "surface-tint": "#00e639",
+                        "primary-fixed": "#72ff70",
+                        "critical-red": "#ff3131",
+                        "outline": "#84967e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1280px",
+                        "margin-lg": "64px",
+                        "margin-sm": "16px",
+                        "unit": "4px",
+                        "margin-md": "32px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-xl": ["JetBrains Mono"],
+                        "headline-lg-mobile": ["JetBrains Mono"],
+                        "headline-lg": ["JetBrains Mono"],
+                        "body-md": ["JetBrains Mono"],
+                        "body-lg": ["JetBrains Mono"],
+                        "code-label": ["JetBrains Mono"],
+                        "button-text": ["JetBrains Mono"],
+                        "headline-md": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "headline-xl": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "800" }],
+                        "headline-lg-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "headline-lg": ["40px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "code-label": ["14px", { "lineHeight": "1.2", "letterSpacing": "0.1em", "fontWeight": "500" }],
+                        "button-text": ["14px", { "lineHeight": "1", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #000000;
+            color: #dae6d2;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .scanline {
+            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.2));
+            background-size: 100% 4px;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: 9999;
+            pointer-events: none;
+            opacity: 0.15;
+        }
+        .glow-text {
+            text-shadow: 0 0 8px rgba(0, 255, 65, 0.6);
+        }
+        .glow-box {
+            box-shadow: 0 0 12px rgba(0, 255, 65, 0.4);
+        }
+        .glitch-hover:hover {
+            animation: glitch-skew 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+            color: #00ff41;
+        }
+        @keyframes glitch-skew {
+            0% { transform: skew(0deg); }
+            20% { transform: skew(-10deg); }
+            40% { transform: skew(10deg); }
+            60% { transform: skew(-5deg); }
+            80% { transform: skew(5deg); }
+            100% { transform: skew(0deg); }
+        }
+    </style>
+</head>
+<body class="bg-surface-void text-on-surface antialiased min-h-screen relative overflow-x-hidden">
+<!-- Scanline Overlay -->
+<div class="scanline"></div>
+<!-- TopNavBar Component -->
+<nav class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-lg h-16 backdrop-blur-md bg-surface-void/90 border-b border-surface-mid shadow-[0_0_12px_rgba(0,255,65,0.2)] font-body-md text-body-md uppercase">
+<div class="font-headline-md text-headline-md font-bold text-terminal-green tracking-tighter">
+            NO LIMITS zero//constraints
+        </div>
+<div class="hidden md:flex gap-gutter items-center">
+<a class="text-on-surface-variant hover:text-terminal-green hover:bg-surface-mid/50 transition-colors cursor-pointer active:opacity-80 px-2 py-1" href="#stages">STAGES</a>
+<a class="text-on-surface-variant hover:text-terminal-green hover:bg-surface-mid/50 transition-colors cursor-pointer active:opacity-80 px-2 py-1" href="#rules">RULES</a>
+<a class="text-on-surface-variant hover:text-terminal-green hover:bg-surface-mid/50 transition-colors cursor-pointer active:opacity-80 px-2 py-1" href="#criteria">CRITERIA</a>
+<a class="text-on-surface-variant hover:text-terminal-green hover:bg-surface-mid/50 transition-colors cursor-pointer active:opacity-80 px-2 py-1" href="#faq">FAQ</a>
+</div>
+<button class="bg-primary-container text-surface-void px-6 py-2 font-button-text text-button-text uppercase hover:bg-surface-void hover:text-terminal-green border border-transparent hover:border-terminal-green transition-all duration-200 glow-box">
+            &gt;_ REGISTER
+        </button>
+</nav>
+<main class="pt-24 pb-margin-lg px-margin-sm md:px-margin-lg max-w-container-max mx-auto space-y-margin-lg">
+<!-- Hero Section -->
+<section class="min-h-[80vh] flex flex-col md:flex-row items-center justify-center gap-margin-lg border border-surface-mid p-margin-md bg-surface-low relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-1 bg-terminal-green opacity-50"></div>
+<div class="flex-1 space-y-6 z-10">
+<h1 class="font-headline-xl text-headline-xl text-terminal-green glow-text glitch-hover cursor-default">
+                    &gt;_ NO LIMITS<br/>zero//constraints
+                </h1>
+<p class="font-headline-md text-headline-md text-on-surface-variant">
+                    [ A NO-LIMITS HACKATHON ]
+                </p>
+<div class="pt-8">
+<button class="bg-terminal-green text-surface-void px-8 py-4 font-button-text text-button-text uppercase hover:bg-surface-void hover:text-terminal-green border border-terminal-green transition-all duration-300 glow-box text-lg">
+                        &gt;_ REGISTER ON UNSTOP
+                    </button>
+</div>
+</div>
+<div class="flex-1 w-full max-w-md relative group">
+<div class="absolute -inset-1 bg-terminal-green opacity-20 blur-xl group-hover:opacity-40 transition-opacity duration-500"></div>
+<img alt="A stark black and white digital illustration of a cube with glowing terminal code and a chess board texture, exploding into chaotic fragments against a dark void background." class="w-full h-auto object-cover border border-surface-mid relative z-10 grayscale hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtui4SWFCznnJoGOT0rHGoPxt8AGZBsvsrl6J3khuB3w22C0igAirTPxntQUDhYxwIEkn3iwV9QiV8U_LoVnYlS6BFt7p4UbCM0n_PVzhWmcyls8Caq5Z_6vXof05K9mzOr_h9_rmNgTtof6n6Vtr9IhT6uFTsaxyLRj9p5Geqxj044NQP7jZ9zDVlDGSfQRUII-QH198JtcE8C4tO4gU1urXVgDRqVqTnbHhzIISUYAn8ONzn56J8W1Naddmyzm4Ownw"/>
+</div>
+</section>
+<!-- About Section -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-gutter py-margin-md border-t border-surface-mid" id="about">
+<div class="col-span-1 md:col-span-4">
+<h2 class="font-headline-lg text-headline-lg text-terminal-green uppercase">_REMOVE<br/>ALL_LIMITS</h2>
+</div>
+<div class="col-span-1 md:col-span-8 font-body-lg text-body-lg text-on-surface-variant space-y-4">
+<p>&gt; The paradigm has shifted. Tools are no longer the bottleneck; imagination is.</p>
+<p>&gt; This is a build-and-ship event where the only constraint is the deadline. We are stripping away the traditional rules of engagement. You are encouraged to use every asset at your disposal: AI models, coding agents, automated pipelines, and pre-built frameworks.</p>
+<p>&gt; Stop coding from scratch. Start architecting impact. If you can dream it, prompt it, and deploy it, it belongs here.</p>
+</div>
+</section>
+<!-- The Rounds Section -->
+<section class="space-y-margin-md" id="stages">
+<div class="border-b border-surface-mid pb-4">
+<h2 class="font-headline-lg text-headline-lg text-terminal-green">_THE_ROUNDS</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Round 1 -->
+<div class="bg-surface-container-low border border-surface-mid p-6 relative group hover:border-terminal-green transition-colors">
+<div class="absolute top-0 left-0 w-full h-0.5 bg-surface-mid group-hover:bg-terminal-green transition-colors"></div>
+<div class="font-code-label text-code-label text-on-surface-variant mb-4">[PHASE_01]</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">QUALIFIER</h3>
+<div class="font-body-md text-body-md text-terminal-green mb-4">Duration: 2 Hours</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Rapid problem-solving and logic assessment. Prove your baseline capability before accessing the mainframe.</p>
+</div>
+<!-- Round 2 -->
+<div class="bg-surface-container-low border border-surface-mid p-6 relative group hover:border-terminal-green transition-colors">
+<div class="absolute top-0 left-0 w-full h-0.5 bg-surface-mid group-hover:bg-terminal-green transition-colors"></div>
+<div class="font-code-label text-code-label text-on-surface-variant mb-4">[PHASE_02]</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">CONCEPT</h3>
+<div class="font-body-md text-body-md text-terminal-green mb-4">Duration: 24 Hours</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Ideation, architecture design, and initial prototyping. Define the scope and assemble the tech stack.</p>
+</div>
+<!-- Round 3 -->
+<div class="bg-surface-container-low border border-surface-mid p-6 relative group hover:border-terminal-green transition-colors">
+<div class="absolute top-0 left-0 w-full h-0.5 bg-surface-mid group-hover:bg-terminal-green transition-colors"></div>
+<div class="font-code-label text-code-label text-on-surface-variant mb-4">[PHASE_03]</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">FINAL DEPLOY</h3>
+<div class="font-body-md text-body-md text-terminal-green mb-4">Duration: 12-15 Hours</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Execution and live deployment. The code must run. The product must ship. No excuses.</p>
+</div>
+</div>
+</section>
+<!-- Visual Interlude -->
+<section class="my-margin-lg border border-surface-mid bg-surface-low relative overflow-hidden flex flex-col md:flex-row items-stretch">
+<div class="flex-1 p-margin-md flex items-center justify-center border-b md:border-b-0 md:border-r border-surface-mid">
+<h2 class="font-headline-lg text-headline-lg text-on-surface text-center md:text-left leading-tight">
+                    NOT EVERYONE<br/>HAS GUTS TO<br/><span class="text-terminal-green bg-surface-mid/50 px-2 py-1 inline-block mt-2">REVERSE THE ROLE.</span>
+</h2>
+</div>
+<div class="flex-1 relative min-h-[400px]">
+<img alt="A dark, gritty digital illustration of a wooden artist's mannequin suspended by strings attached to a massive, crumbling stone text reading 'AI'. The aesthetic is cyberpunk brutalism." class="absolute inset-0 w-full h-full object-cover grayscale opacity-80 mix-blend-screen" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlk6334HOFc7ByyLXPUnZluP-_tcCgPHUVBXopzJFT7FHMJJXQp-SYdjWmOQNtXJpZSD0by9EixOdlCkMvllRPyQmDQ5pQX4U4lyApFbeiyd1EUooGYSalZMnqydbGBq5kFX6U4dB6RNDBadbkXbud821zNNWBPbu4mRueBE05yCUrNhjSPUH8jHxNcosDtaPOqXJOz9IP_uo5dUrA8HLxI71uAuh-mID4HYDystczPeLr08aL_q75cqRbsIr9G-4Ggg4"/>
+</div>
+</section>
+<!-- Rules & Specs -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-gutter py-margin-md border-t border-surface-mid" id="rules">
+<div class="col-span-1 md:col-span-4">
+<h2 class="font-headline-lg text-headline-lg text-terminal-green uppercase">_RULES_&amp;_SPECS</h2>
+</div>
+<div class="col-span-1 md:col-span-8">
+<ul class="space-y-4 font-body-lg text-body-lg text-on-surface-variant">
+<li class="flex items-start gap-4">
+<span class="text-terminal-green mt-1">[1]</span>
+<span>Team Size: 2-4 members. Solo operators are not permitted for this mission.</span>
+</li>
+<li class="flex items-start gap-4">
+<span class="text-terminal-green mt-1">[1]</span>
+<span>Zero Tool Restrictions: Leverage any AI, framework, API, or automated agent.</span>
+</li>
+<li class="flex items-start gap-4">
+<span class="text-terminal-green mt-1">[1]</span>
+<span>Mandatory Deployment: Localhost demos are unacceptable. The project must be live and accessible via URL.</span>
+</li>
+</ul>
+</div>
+</section>
+<!-- Judging Criteria -->
+<section class="space-y-margin-md py-margin-md border-t border-surface-mid" id="criteria">
+<div class="border-b border-surface-mid pb-4">
+<h2 class="font-headline-lg text-headline-lg text-terminal-green">_JUDGING_CRITERIA</h2>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-gutter">
+<div class="border border-surface-mid p-6 bg-surface-void hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-3 mb-4 text-terminal-green">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">rocket_launch</span>
+<h3 class="font-headline-md text-headline-md">DEPLOYMENT</h3>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Is the solution live? Does it function as intended in a production-like environment?</p>
+</div>
+<div class="border border-surface-mid p-6 bg-surface-void hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-3 mb-4 text-terminal-green">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">memory</span>
+<h3 class="font-headline-md text-headline-md">RESOURCEFULNESS</h3>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">How effectively were tools, APIs, and AI leveraged to accelerate development and bypass limitations?</p>
+</div>
+<div class="border border-surface-mid p-6 bg-surface-void hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-3 mb-4 text-terminal-green">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">extension</span>
+<h3 class="font-headline-md text-headline-md">PROBLEM FIT</h3>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Does the engineered solution accurately and elegantly solve the proposed problem?</p>
+</div>
+<div class="border border-surface-mid p-6 bg-surface-void hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-3 mb-4 text-terminal-green">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
+<h3 class="font-headline-md text-headline-md">INNOVATION</h3>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Originality of approach. Did the team synthesize existing tools in a novel way?</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Component -->
+<footer class="w-full py-margin-md px-margin-lg flex flex-col md:flex-row justify-between items-center gap-gutter bg-surface-void border-t border-surface-mid font-code-label text-code-label uppercase mt-auto">
+<div class="font-headline-lg text-headline-lg text-terminal-green">
+            [C] 2024 ZERO_CONSTRAINTS // TERMINAL_ACCESS_ONLY
+        </div>
+<div class="flex flex-wrap gap-4 items-center justify-center">
+<a class="text-on-surface-variant hover:text-terminal-green hover:underline transition-opacity duration-200" href="#">PRIVACY_PROT</a>
+<span class="text-surface-mid">|</span>
+<a class="text-on-surface-variant hover:text-terminal-green hover:underline transition-opacity duration-200" href="#">API_DOCS</a>
+<span class="text-surface-mid">|</span>
+<a class="text-on-surface-variant hover:text-terminal-green hover:underline transition-opacity duration-200" href="#">SYSTEM_LOGS</a>
+<span class="text-surface-mid">|</span>
+<a class="text-on-surface-variant hover:text-terminal-green hover:underline transition-opacity duration-200" href="#">SUPPORT</a>
+</div>
+</footer>
+</body></html>

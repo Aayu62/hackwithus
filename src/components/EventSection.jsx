@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import EventCard from './EventCard';
 import { Search, Filter, Flame, Calendar, Trophy, Terminal } from 'lucide-react';
 
-export default function EventSection({ sectionMeta, events, onOpenModal }) {
+export default function EventSection({ sectionMeta, events, onOpenHackathonPage }) {
   const [activeTab, setActiveTab] = useState('ongoing'); // 'ongoing' | 'upcoming' | 'concluded'
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedDifficulty, setSelectedDifficulty] = useState('All');
@@ -119,7 +119,7 @@ export default function EventSection({ sectionMeta, events, onOpenModal }) {
                 key={event.id}
                 event={event}
                 activeTab={activeTab}
-                onOpenModal={onOpenModal}
+                onOpenHackathonPage={onOpenHackathonPage}
               />
             ))}
           </div>
