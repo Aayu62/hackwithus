@@ -4,6 +4,7 @@ import { Terminal, ArrowLeft, ExternalLink, Zap, Shield, Cpu, Flame, Layers, Awa
 export default function NoLimitHackathonPage() {
   const [openFaq, setOpenFaq] = useState(null);
   const [activeNavSection, setActiveNavSection] = useState('');
+  const [isScrolledToAbout, setIsScrolledToAbout] = useState(false);
 
   const navItems = [
     { id: 'about', label: '_ABOUT' },
@@ -35,6 +36,24 @@ export default function NoLimitHackathonPage() {
     });
 
     return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const aboutEl = document.getElementById('about');
+      if (aboutEl) {
+        const rect = aboutEl.getBoundingClientRect();
+        if (rect.top <= window.innerHeight * 0.75) {
+          setIsScrolledToAbout(true);
+        } else {
+          setIsScrolledToAbout(false);
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const scrollToSection = (id) => {
@@ -92,7 +111,7 @@ export default function NoLimitHackathonPage() {
       ></div>
 
       {/* Cyberpunk Top Navbar */}
-      <nav className="fixed top-0 w-full z-40 flex justify-between items-center px-3 sm:px-8 h-16 backdrop-blur-md bg-[#000000]/90 border-b border-[#1a1a1a] shadow-[0_0_12px_rgba(0,255,65,0.2)] text-xs sm:text-sm uppercase">
+      <nav className="fixed top-0 w-full z-40 flex justify-between items-center px-3 sm:px-8 h-16 bg-transparent border-b border-transparent text-xs sm:text-sm uppercase">
         
         {/* Left Brand Title */}
         <div className="flex items-center gap-2 sm:gap-3 max-w-[65%] sm:max-w-none">
@@ -107,13 +126,13 @@ export default function NoLimitHackathonPage() {
           
           <span className="hidden sm:inline-block text-[#3b4b37]">|</span>
 
-          <div className="font-extrabold text-[#00ff41] tracking-tighter text-xs sm:text-base flex items-center gap-1.5 truncate">
-            <Terminal className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#00ff41] shrink-0" />
-            <span className="truncate">NO LIMITS zero//constraints</span>
+          <div className="font-extrabold text-[#FFDE00] tracking-wider text-xs sm:text-base flex items-center gap-1.5 truncate">
+            <Terminal className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#FFDE00] shrink-0" />
+            <span className="truncate">HackWithUs</span>
           </div>
         </div>
 
-        {/* Center Nav Links with Active Green Highlight */}
+        {/* Center Nav Links: Default Green, Hover/Active Yellow */}
         <div className="hidden md:flex gap-3 items-center text-xs font-medium tracking-wider">
           {navItems.map((item) => (
             <button
@@ -121,8 +140,8 @@ export default function NoLimitHackathonPage() {
               onClick={() => scrollToSection(item.id)}
               className={`px-2.5 py-1 transition-all duration-200 uppercase font-bold border ${
                 activeNavSection === item.id
-                  ? 'text-[#00ff41] bg-[#1a1a1a] border-[#00ff41]/60 shadow-[0_0_8px_rgba(0,255,65,0.4)]'
-                  : 'text-[#b9ccb2] border-transparent hover:text-[#00ff41] hover:bg-[#1a1a1a]'
+                  ? 'text-[#FFDE00] bg-[#1a1a1a] border-[#FFDE00]/60 shadow-[0_0_8px_rgba(255,222,0,0.4)]'
+                  : 'text-[#00ff41] border-transparent hover:text-[#FFDE00] hover:bg-[#1a1a1a] hover:border-[#FFDE00]/60'
               }`}
             >
               {item.label}
@@ -140,106 +159,138 @@ export default function NoLimitHackathonPage() {
       </nav>
 
       {/* Main Content Container */}
-      <main className="pt-20 sm:pt-24 pb-16 px-3 sm:px-8 max-w-[1280px] mx-auto space-y-12 sm:space-y-16">
+      <main className="pt-14 sm:pt-16 pb-16 px-3 sm:px-8 max-w-[1280px] mx-auto space-y-12 sm:space-y-16">
 
         {/* HERO SECTION */}
-        <section className="min-h-[60vh] flex flex-col lg:flex-row items-center justify-between gap-6 sm:gap-8 border border-[#1a1a1a] p-4 sm:p-6 lg:p-8 bg-[#0a0a0a] relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-1 bg-[#00ff41] opacity-70"></div>
+        <section className="flex flex-col md:flex-row items-center justify-center gap-4 bg-[#000000] relative overflow-hidden py-7 px-5">
+          <div className="absolute inset-0 z-0 opacity-10 pointer-events-none">
+            <svg height="100%" width="100%" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <pattern height="100" id="topo" patternUnits="userSpaceOnUse" width="100" x="0" y="0">
+                  <path d="M0 50 Q 25 25, 50 50 T 100 50" fill="none" stroke="#00ff41" strokeWidth="0.5"></path>
+                  <path d="M0 75 Q 25 50, 50 75 T 100 75" fill="none" stroke="#00ff41" strokeWidth="0.5"></path>
+                  <path d="M0 25 Q 25 0, 50 25 T 100 25" fill="none" stroke="#00ff41" strokeWidth="0.5"></path>
+                </pattern>
+              </defs>
+              <rect fill="url(#topo)" height="100%" width="100%" x="0" y="0"></rect>
+            </svg>
+          </div>
           
-          {/* Left Text Block */}
-          <div className="flex-1 space-y-4 sm:space-y-5 z-10 w-full">
-            
-            <div className="inline-flex items-center gap-2 px-2.5 py-1 bg-[#1a1a1a] border border-[#00ff41]/50 text-[#00ff41] text-[10px] sm:text-xs font-bold uppercase tracking-widest max-w-full">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#00ff41] animate-ping shrink-0"></span>
-              <span className="truncate">STATUS: ARENA_ACTIVE // UNSTOP REGISTRATIONS OPEN</span>
-            </div>
+          <div className="flex-1 space-y-6 z-10">
+            <div className="relative flex flex-col items-center justify-center text-center w-full py-1">
+              <div className="relative z-10 flex flex-col items-center">
+                
+                {/* Native Responsive Hero Container */}
+                <div className="flex flex-col items-center w-full">
+                  <div className="relative z-30 mb-[-1.5rem] sm:mb-[-2.5rem] md:mb-[-3.2rem] animate-hero-down delay-100">
+                    <span className="text-[#ffb000] text-4xl sm:text-6xl md:text-7xl lg:text-[85px] italic font-normal" style={{ fontFamily: "'Brittany Signature', 'Brittany', cursive" }}>
+                      Hackathon
+                    </span>
+                  </div>
+                  <div className="relative z-20 animate-hero-up delay-200">
+                    <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-[130px] font-bold tracking-wider text-[#00ff41] leading-none" style={{ fontFamily: "'Impact', 'Charcoal', sans-serif" }}>
+                      NO LIMITS.
+                    </h1>
+                  </div>
+                  <div className="-mt-3 sm:-mt-3 md:-mt-3 relative z-20 animate-hero-up delay-350">
+                    <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-[95px] font-bold tracking-[0.05em] leading-none text-black" style={{ WebkitTextStroke: '0.5px rgb(218, 230, 210)', fontFamily: "'Anton', sans-serif" }}>
+                      ZERO//CONSTRAINTS
+                    </h2>
+                  </div>
+                  <div className="-mt-7 sm:-mt-10 md:-mt-12 relative z-10 select-none pointer-events-none animate-hero-up delay-500">
+                    <span className="text-6xl sm:text-8xl md:text-[130px] lg:text-[150px] font-bold leading-none block" style={{ fontFamily: "'Anton', sans-serif", backgroundImage: 'linear-gradient(180deg, #02bf61 0%, rgba(2, 191, 97, 0.325) 67.5%, rgba(0, 57, 29, 0) 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', color: 'transparent' }}>
+                      1.0
+                    </span>
+                  </div>
 
-            <h1 
-              className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-[#00ff41] tracking-tight uppercase leading-[1.15] break-words"
-              style={{ textShadow: '0 0 10px rgba(0, 255, 65, 0.4)' }}
-            >
-              &gt;_ NO LIMITS<br />
-              <span className="text-white">zero//constraints</span>
-            </h1>
+                  {/* Register Button & Scroll Down Indicator */}
+                  <div className="-mt-8 sm:-mt-9 md:-mt-10 z-30 relative flex flex-col items-center gap-3 animate-hero-up delay-650">
+                    <button 
+                      onClick={handleRegisterClick}
+                      className="bg-transparent text-[#00ff41] px-6 sm:px-10 md:px-12 py-3.5 sm:py-4 md:py-5 font-mono text-[13px] sm:text-base md:text-lg leading-none font-bold uppercase hover:bg-[#00ff41] hover:text-[#000000] border border-[#00ff41] transition-all duration-300 shadow-[0_0_12px_rgba(0,255,65,0.4)]"
+                    >
+                      &gt;_ REGISTER ON UNSTOP
+                    </button>
 
-            <p className="text-sm sm:text-lg text-[#b9ccb2] font-semibold">
-              [ A NO-LIMITS BUILD-AND-SHIP HACKATHON ]
-            </p>
-
-            <p className="text-xs sm:text-sm text-[#dae6d2]/80 leading-relaxed max-w-xl font-normal">
-              Test how far you can push an idea — from a blank repo to a live, deployed product — under real time pressure. No restrictions on tools, frameworks, or AI agents.
-            </p>
-
-            {/* Metrics Telemetry Grid - Clean Vertical Dividers */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 pt-2 border-y border-[#3b4b37]/40 sm:border-y-0 py-2.5 sm:py-0">
-              <div className="pr-3 sm:pr-4 border-r border-[#3b4b37] pb-2 sm:pb-0">
-                <span className="text-[9px] sm:text-[10px] text-[#b9ccb2] uppercase block font-bold tracking-wider">PRIZE_POOL</span>
-                <span className="text-sm sm:text-base font-extrabold text-[#00ff41]">₹20,000</span>
-              </div>
-              <div className="pl-3 sm:pl-4 pr-0 sm:pr-4 sm:border-r border-[#3b4b37] pb-2 sm:pb-0">
-                <span className="text-[9px] sm:text-[10px] text-[#b9ccb2] uppercase block font-bold tracking-wider">TEAM_SIZE</span>
-                <span className="text-sm sm:text-base font-extrabold text-white">2 - 4 DEVS</span>
-              </div>
-              <div className="pt-2 sm:pt-0 pr-3 sm:pr-4 sm:pl-4 border-r border-[#3b4b37]">
-                <span className="text-[9px] sm:text-[10px] text-[#b9ccb2] uppercase block font-bold tracking-wider">REG. FEE</span>
-                <span className="text-sm sm:text-base font-extrabold text-white">₹200 per Team</span>
-              </div>
-              <div className="pt-2 sm:pt-0 pl-3 sm:pl-4">
-                <span className="text-[9px] sm:text-[10px] text-[#b9ccb2] uppercase block font-bold tracking-wider">MODE</span>
-                <span className="text-sm sm:text-base font-extrabold text-[#00ff41]">100% ONLINE</span>
-              </div>
-            </div>
-
-            {/* Action Buttons */}
-            <div className="pt-2 flex flex-col sm:flex-row gap-3 w-full">
-              <button
-                onClick={handleRegisterClick}
-                className="bg-[#00ff41] text-black px-5 sm:px-6 py-3 font-extrabold text-xs sm:text-sm uppercase hover:bg-white hover:text-black border border-[#00ff41] transition-all duration-300 shadow-[0_0_12px_rgba(0,255,65,0.3)] flex items-center justify-center gap-2 w-full sm:w-auto"
-              >
-                &gt;_ REGISTER ON UNSTOP
-                <ExternalLink className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2.5]" />
-              </button>
-
-              <a
-                href="#stages"
-                className="bg-[#1a1a1a] text-white px-5 sm:px-6 py-3 font-bold text-xs sm:text-sm uppercase hover:border-[#00ff41] hover:text-[#00ff41] border border-[#3b4b37] transition-all duration-300 flex items-center justify-center gap-2 w-full sm:w-auto text-center"
-              >
-                EXPLORE_ROUNDS
-              </a>
-            </div>
-
-          </div>
-
-          {/* Right Futuristic Art Visual - Fixed Dimension Responsive Container on Mobile */}
-          <div className="w-full max-w-[340px] sm:max-w-md lg:w-auto shrink-0 mx-auto lg:mx-0 relative overflow-hidden p-1">
-            <div className="border border-[#3b4b37] bg-[#000000] p-2 sm:p-2.5 relative z-10 shadow-2xl w-full">
-              <div className="w-full h-[220px] sm:h-[280px] relative overflow-hidden border border-[#1a1a1a] bg-[#050505]">
-                <img 
-                  src="/images/Hero_Page.png" 
-                  alt="Zero Constraints Hackathon Cyberpunk Illustration" 
-                  className="w-full h-full object-contain sm:object-cover transition-all duration-700"
-                />
-              </div>
-              <div className="p-2 bg-[#0a0a0a] border-t border-[#1a1a1a] flex justify-between items-center text-[10px] text-[#b9ccb2]">
-                <span className="truncate">CORE_SYSTEM: RESOURCEFUL_INTELLIGENCE</span>
-                <span className="text-[#00ff41] font-bold shrink-0 ml-2">[VERIFIED]</span>
+                    {/* Animated Scroll Down Indicator */}
+                    <div 
+                      onClick={() => scrollToSection('about')}
+                      className="mt-2 flex flex-col items-center justify-center gap-1 cursor-pointer group text-[#00ff41]"
+                    >
+                      <ChevronDown className="w-6 h-6 sm:w-7 sm:h-7 animate-bounce text-[#00ff41] stroke-[2.5]" />
+                      <span className="text-[11px] sm:text-xs font-mono font-bold tracking-widest uppercase text-[#b9ccb2] group-hover:text-[#00ff41] transition-colors">
+                        Scroll down for more info
+                      </span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-
         </section>
 
-        {/* ABOUT SECTION */}
-        <section className="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 py-8 sm:py-10 border-t border-[#1a1a1a]" id="about">
-          <div className="col-span-1 md:col-span-4">
-            <h2 className="text-2xl sm:text-4xl font-extrabold text-[#00ff41] uppercase tracking-tight">
-              _REMOVE<br />ALL_LIMITS
-            </h2>
+        {/* ABOUT SECTION WITH BIDIRECTIONAL SCROLL TRANSITION */}
+        <section 
+          id="about" 
+          className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 py-10 sm:py-16 border-t border-[#1a1a1a] transition-all duration-700 overflow-hidden"
+        >
+          {/* Left Column: Hero Elements (NO LIMITS, ZERO//CONSTRAINTS, 1.0, Register Button) sliding down & scaled down into Left */}
+          <div 
+            className={`col-span-1 lg:col-span-5 flex flex-col items-start justify-center transition-all duration-700 transform ${
+              isScrolledToAbout 
+                ? 'translate-x-0 translate-y-0 opacity-100' 
+                : '-translate-x-16 -translate-y-12 opacity-0 pointer-events-none'
+            }`}
+          >
+            <div className="flex flex-col items-start text-left w-full space-y-1">
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-wider text-[#00ff41] leading-none" style={{ fontFamily: "'Impact', 'Charcoal', sans-serif" }}>
+                NO LIMITS.
+              </h1>
+              <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold tracking-[0.05em] leading-none text-black -mt-1" style={{ WebkitTextStroke: '0.5px rgb(218, 230, 210)', fontFamily: "'Anton', sans-serif" }}>
+                ZERO//CONSTRAINTS
+              </h2>
+              <span className="text-4xl sm:text-6xl lg:text-7xl font-bold leading-none block -mt-3" style={{ fontFamily: "'Anton', sans-serif", backgroundImage: 'linear-gradient(180deg, #02bf61 0%, rgba(2, 191, 97, 0.325) 67.5%, rgba(0, 57, 29, 0) 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', color: 'transparent' }}>
+                1.0
+              </span>
+
+              <div className="pt-4">
+                <button 
+                  onClick={handleRegisterClick}
+                  className="bg-transparent text-[#00ff41] px-5 sm:px-8 py-2.5 sm:py-3.5 font-mono text-xs sm:text-sm leading-none font-bold uppercase hover:bg-[#00ff41] hover:text-[#000000] border border-[#00ff41] transition-all duration-300 shadow-[0_0_12px_rgba(0,255,65,0.4)]"
+                >
+                  &gt;_ REGISTER ON UNSTOP
+                </button>
+              </div>
+            </div>
           </div>
-          <div className="col-span-1 md:col-span-8 text-xs sm:text-base text-[#b9ccb2] space-y-3 sm:space-y-4 leading-relaxed">
-            <p className="text-white font-bold">&gt; The paradigm has shifted. Tools are no longer the bottleneck; imagination is.</p>
-            <p>&gt; This is a build-and-ship event where the only constraint is the deadline. We are stripping away the traditional rules of engagement. You are encouraged to use every asset at your disposal: AI models, coding agents, automated pipelines, and pre-built frameworks.</p>
-            <p className="text-[#00ff41] font-semibold">&gt; Stop coding from scratch. Start architecting impact. If you can dream it, prompt it, and deploy it, it belongs here.</p>
+
+          {/* Right Column: "Hackathon" Heading & About Paragraphs sliding down into place */}
+          <div className="col-span-1 lg:col-span-7 space-y-4 flex flex-col justify-center">
+            {/* "Hackathon" Title sliding down to right heading */}
+            <div 
+              className={`transition-all duration-700 transform ${
+                isScrolledToAbout 
+                  ? 'translate-x-0 translate-y-0 opacity-100' 
+                  : 'translate-x-16 -translate-y-12 opacity-0'
+              }`}
+            >
+              <span className="text-[#ffb000] text-4xl sm:text-6xl lg:text-7xl italic font-normal block leading-none" style={{ fontFamily: "'Brittany Signature', 'Brittany', cursive" }}>
+                About the Hackathon
+              </span>
+            </div>
+
+            {/* About Paragraphs sliding down below "Hackathon" */}
+            <div 
+              className={`text-xs sm:text-base text-[#b9ccb2] space-y-3.5 sm:space-y-4 leading-relaxed transition-all duration-700 delay-150 transform ${
+                isScrolledToAbout 
+                  ? 'translate-y-0 opacity-100' 
+                  : 'translate-y-12 opacity-0'
+              }`}
+            >
+              <p className="text-white font-bold">&gt; The paradigm has shifted. Tools are no longer the bottleneck; imagination is.</p>
+              <p>&gt; This is a build-and-ship event where the only constraint is the deadline. We are stripping away the traditional rules of engagement. You are encouraged to use every asset at your disposal: AI models, coding agents, automated pipelines, and pre-built frameworks.</p>
+              <p className="text-[#00ff41] font-semibold">&gt; Stop coding from scratch. Start architecting impact. If you can dream it, prompt it, and deploy it, it belongs here.</p>
+            </div>
           </div>
         </section>
 
