@@ -2,6 +2,13 @@ import React from 'react';
 import { Terminal, Zap, ArrowRight, Flame } from 'lucide-react';
 
 export default function Hero({ onExploreClick }) {
+  const handleScrollToFeatured = () => {
+    const featuredEl = document.getElementById('featured-events');
+    if (featuredEl) {
+      featuredEl.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="relative overflow-hidden pt-8 pb-10 md:pt-12 md:pb-14 border-b-2 border-black bg-white">
       
@@ -23,23 +30,15 @@ export default function Hero({ onExploreClick }) {
           Join thousands of developers, designers, and algorithmic competitors building real-world solutions in hackathons, testing skills in speed challenges, attending expert workshops, and taking daily dev trivia quizzes.
         </p>
 
-        {/* Primary Call to Action Buttons */}
-        <div className="flex flex-col sm:flex-row justify-center items-stretch sm:items-center gap-3 sm:gap-4 w-full max-w-sm sm:max-w-none mx-auto">
+        {/* Primary Call to Action Button */}
+        <div className="flex justify-center items-center w-full max-w-sm sm:max-w-none mx-auto">
           <button
-            onClick={() => onExploreClick('hackathons')}
-            className="flex items-center justify-center gap-2 sm:gap-3 px-6 sm:px-8 py-3.5 sm:py-4 bg-black text-white hover:bg-brand-yellow hover:text-black font-mono font-black text-xs sm:text-sm uppercase tracking-wider rounded-full border-2 border-black shadow-neo hover:shadow-neo-lg transition-all"
+            onClick={handleScrollToFeatured}
+            className="flex items-center justify-center gap-2 sm:gap-3 px-8 sm:px-10 py-3.5 sm:py-4 bg-black text-white hover:bg-brand-yellow hover:text-black font-mono font-black text-xs sm:text-sm uppercase tracking-wider rounded-full border-2 border-black shadow-neo hover:shadow-neo-lg transition-all"
           >
             <Terminal className="w-4 h-4 sm:w-5 sm:h-5 stroke-[2.5]" />
-            Register Now
+            Explore
             <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
-          </button>
-
-          <button
-            onClick={() => onExploreClick('quizzes')}
-            className="flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 bg-white text-black font-mono font-black text-xs sm:text-sm uppercase tracking-wider rounded-full border-2 border-black hover:bg-zinc-100 transition-all shadow-neo"
-          >
-            <Zap className="w-4 h-4 sm:w-5 sm:h-5 text-black" />
-            Try Daily Quizzes
           </button>
         </div>
 

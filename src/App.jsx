@@ -89,11 +89,8 @@ export default function App() {
             {/* Hero Section */}
             <Hero onExploreClick={setActiveSection} />
 
-            {/* Floating Tiles / Bento Grid */}
-            <FloatingTiles onSelectSection={setActiveSection} />
-
             {/* Featured & Trending Events Section on Homepage */}
-            <section className="py-16 bg-white border-b-2 border-black">
+            <section id="featured-events" className="py-16 bg-white border-b-2 border-black">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 
                 <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between mb-8 gap-4">
@@ -127,6 +124,9 @@ export default function App() {
 
               </div>
             </section>
+
+            {/* Floating Tiles / Bento Grid */}
+            <FloatingTiles onSelectSection={setActiveSection} />
           </div>
         ) : (
           /* Render Active Event Section (Hackathons, Competitions, Workshops, Quizzes) */

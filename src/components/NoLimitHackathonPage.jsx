@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Terminal, ArrowLeft, ExternalLink, Zap, Shield, Cpu, Flame, Layers, Award, HelpCircle, CheckCircle2, ChevronDown, ChevronUp, Clock } from 'lucide-react';
+import { Terminal, ArrowLeft, ExternalLink, Zap, Shield, Cpu, Flame, Layers, Award, HelpCircle, CheckCircle2, ChevronDown, ChevronUp, Clock, Menu, X } from 'lucide-react';
 
 export default function NoLimitHackathonPage() {
   const [openFaq, setOpenFaq] = useState(null);
   const [activeNavSection, setActiveNavSection] = useState('');
   const [isScrolledToAbout, setIsScrolledToAbout] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const navItems = [
     { id: 'about', label: '_ABOUT' },
@@ -90,30 +91,30 @@ export default function NoLimitHackathonPage() {
     },
     {
       q: "Is live deployment mandatory?",
-      a: "Yes. Deployment is mandatory. Every final round submission must include a live, publicly accessible URL link (Vercel, Netlify, Cloudflare, Railway, etc.), not just source code."
+      a: "No. Deployment is not mandatory. But you will get bonus points if your solution is live on a public domain and does it function reliably without crashing under real-world testing."
     },
     {
       q: "Is solo participation allowed?",
-      a: "No. Solo participation is not permitted for this mission. Teams must consist of 2 to 4 members before Round 1 starts."
+      a: "Yes. Solo participation is permitted for this mission. A team can consist of min 1 member and max 4 members."
     }
   ];
 
   return (
     <div className="bg-[#000000] text-[#dae6d2] min-h-screen font-mono relative overflow-x-hidden selection:bg-[#00ff41] selection:text-black">
       
-      {/* Terminal Scanline Texture Overlay */}
-      <div 
-        className="fixed inset-0 pointer-events-none z-50 opacity-15"
-        style={{
-          background: 'linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.4))',
-          backgroundSize: '100% 4px'
-        }}
-      ></div>
+      {/* Global Fixed Background Image visible everywhere on scroll */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <img 
+          src="/images/Hackathonbg.png" 
+          alt="Website Background" 
+          className="w-full h-full object-cover object-center fixed inset-0"
+        />
+      </div>
 
       {/* Cyberpunk Top Navbar */}
       <nav className="fixed top-0 w-full z-40 flex justify-between items-center px-3 sm:px-8 h-16 bg-transparent border-b border-transparent text-xs sm:text-sm uppercase">
         
-        {/* Left Brand Title */}
+        {/* Left Brand Title - Clickable on Mobile to Open Sidebar */}
         <div className="flex items-center gap-2 sm:gap-3 max-w-[65%] sm:max-w-none">
           <button
             onClick={handleBackToMain}
@@ -126,9 +127,14 @@ export default function NoLimitHackathonPage() {
           
           <span className="hidden sm:inline-block text-[#3b4b37]">|</span>
 
-          <div className="font-extrabold text-[#FFDE00] tracking-wider text-xs sm:text-base flex items-center gap-1.5 truncate">
+          <div 
+            onClick={() => setIsSidebarOpen(true)}
+            className="font-extrabold text-[#FFDE00] tracking-wider text-xs sm:text-base flex items-center gap-1.5 truncate cursor-pointer hover:opacity-80 transition-opacity"
+            title="Click to open menu"
+          >
             <Terminal className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#FFDE00] shrink-0" />
             <span className="truncate">HackWithUs</span>
+            <Menu className="w-4 h-4 text-[#00ff41] ml-0.5 md:hidden shrink-0" />
           </div>
         </div>
 
@@ -158,23 +164,85 @@ export default function NoLimitHackathonPage() {
         </button>
       </nav>
 
+      {/* Mobile Cyberpunk Sidebar Drawer */}
+      {isSidebarOpen && (
+        <div 
+          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md md:hidden flex justify-end transition-opacity duration-300"
+          onClick={() => setIsSidebarOpen(false)}
+        >
+          <div 
+            className="w-4/5 max-w-xs bg-[#0a0a0a] border-l border-[#00ff41]/50 h-full p-6 flex flex-col justify-between shadow-[0_0_30px_rgba(0,255,65,0.2)]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div>
+              {/* Sidebar Header */}
+              <div className="flex items-center justify-between border-b border-[#1a1a1a] pb-4 mb-6">
+                <div className="font-extrabold text-[#FFDE00] tracking-wider text-sm flex items-center gap-2">
+                  <Terminal className="w-4 h-4 text-[#FFDE00]" />
+                  <span>HackWithUs</span>
+                </div>
+                <button 
+                  onClick={() => setIsSidebarOpen(false)}
+                  className="text-[#b9ccb2] hover:text-[#00ff41] p-1 transition-colors"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* Navigation Section Links */}
+              <div className="flex flex-col gap-2.5">
+                <div className="text-[10px] font-mono text-[#3b4b37] uppercase tracking-widest mb-1">// NAVIGATION</div>
+                {navItems.map((item) => (
+                  <button
+                    key={item.id}
+                    onClick={() => {
+                      scrollToSection(item.id);
+                      setIsSidebarOpen(false);
+                    }}
+                    className={`text-left px-3.5 py-2.5 font-bold uppercase text-xs tracking-wider border transition-all ${
+                      activeNavSection === item.id
+                        ? 'text-[#FFDE00] bg-[#1a1a1a] border-[#FFDE00]/60 shadow-[0_0_8px_rgba(255,222,0,0.3)]'
+                        : 'text-[#00ff41] border-transparent hover:border-[#00ff41]/40 hover:bg-[#1a1a1a]/50'
+                    }`}
+                  >
+                    {item.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Sidebar Bottom Action Buttons */}
+            <div className="space-y-3 pt-6 border-t border-[#1a1a1a]">
+              <button
+                onClick={() => {
+                  handleBackToMain();
+                  setIsSidebarOpen(false);
+                }}
+                className="w-full flex items-center justify-center gap-2 px-3 py-2.5 bg-[#1a1a1a] text-[#00ff41] border border-[#00ff41]/40 font-mono text-xs font-bold uppercase hover:bg-[#00ff41] hover:text-black transition-all"
+              >
+                <ArrowLeft className="w-4 h-4" />
+                MAIN_SITE
+              </button>
+              
+              <button
+                onClick={() => {
+                  handleRegisterClick();
+                  setIsSidebarOpen(false);
+                }}
+                className="w-full px-3 py-3 bg-[#00ff41] text-black font-extrabold text-xs uppercase shadow-[0_0_12px_rgba(0,255,65,0.4)] hover:bg-white transition-all"
+              >
+                &gt;_ REGISTER ON UNSTOP
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Main Content Container */}
-      <main className="pt-14 sm:pt-16 pb-16 px-3 sm:px-8 max-w-[1280px] mx-auto space-y-12 sm:space-y-16">
+      <main className="pt-14 sm:pt-16 pb-16 px-3 sm:px-8 max-w-[1280px] mx-auto space-y-10 sm:space-y-16 relative z-10">
 
         {/* HERO SECTION */}
-        <section className="flex flex-col md:flex-row items-center justify-center gap-4 bg-[#000000] relative overflow-hidden py-7 px-5">
-          <div className="absolute inset-0 z-0 opacity-10 pointer-events-none">
-            <svg height="100%" width="100%" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <pattern height="100" id="topo" patternUnits="userSpaceOnUse" width="100" x="0" y="0">
-                  <path d="M0 50 Q 25 25, 50 50 T 100 50" fill="none" stroke="#00ff41" strokeWidth="0.5"></path>
-                  <path d="M0 75 Q 25 50, 50 75 T 100 75" fill="none" stroke="#00ff41" strokeWidth="0.5"></path>
-                  <path d="M0 25 Q 25 0, 50 25 T 100 25" fill="none" stroke="#00ff41" strokeWidth="0.5"></path>
-                </pattern>
-              </defs>
-              <rect fill="url(#topo)" height="100%" width="100%" x="0" y="0"></rect>
-            </svg>
-          </div>
+        <section className="flex flex-col md:flex-row items-center justify-center gap-4 bg-transparent relative overflow-hidden py-7 px-5">
           
           <div className="flex-1 space-y-6 z-10">
             <div className="relative flex flex-col items-center justify-center text-center w-full py-1">
@@ -182,32 +250,32 @@ export default function NoLimitHackathonPage() {
                 
                 {/* Native Responsive Hero Container */}
                 <div className="flex flex-col items-center w-full">
-                  <div className="relative z-30 mb-[-1.5rem] sm:mb-[-2.5rem] md:mb-[-3.2rem] animate-hero-down delay-100">
-                    <span className="text-[#ffb000] text-4xl sm:text-6xl md:text-7xl lg:text-[85px] italic font-normal" style={{ fontFamily: "'Brittany Signature', 'Brittany', cursive" }}>
+                  <div className="relative z-30 mb-[-1.8rem] xs:mb-[-2.2rem] sm:mb-[-2.5rem] md:mb-[-3.2rem] animate-hero-down delay-100">
+                    <span className="text-[#ffb000] text-5xl xs:text-6xl sm:text-6xl md:text-7xl lg:text-[85px] italic font-normal" style={{ fontFamily: "'Brittany Signature', 'Brittany', cursive", WebkitTextStroke: '0.5px rgb(0, 0, 0)' }}>
                       Hackathon
                     </span>
                   </div>
                   <div className="relative z-20 animate-hero-up delay-200">
-                    <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-[130px] font-bold tracking-wider text-[#00ff41] leading-none" style={{ fontFamily: "'Impact', 'Charcoal', sans-serif" }}>
+                    <h1 className="text-6xl xs:text-7xl sm:text-7xl md:text-8xl lg:text-[130px] font-bold tracking-wider text-[#00bf63] leading-none" style={{ fontFamily: "'Impact', 'Charcoal', sans-serif" }}>
                       NO LIMITS.
                     </h1>
                   </div>
-                  <div className="-mt-3 sm:-mt-3 md:-mt-3 relative z-20 animate-hero-up delay-350">
-                    <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-[95px] font-bold tracking-[0.05em] leading-none text-black" style={{ WebkitTextStroke: '0.5px rgb(218, 230, 210)', fontFamily: "'Anton', sans-serif" }}>
+                  <div className="-mt-2 sm:-mt-3 md:-mt-3 relative z-20 animate-hero-up delay-350">
+                    <h2 className="text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-[95px] font-bold tracking-[0.05em] leading-none text-black" style={{ WebkitTextStroke: '0.1px rgb(218, 230, 210)', fontFamily: "'Anton', sans-serif" }}>
                       ZERO//CONSTRAINTS
                     </h2>
                   </div>
-                  <div className="-mt-7 sm:-mt-10 md:-mt-12 relative z-10 select-none pointer-events-none animate-hero-up delay-500">
-                    <span className="text-6xl sm:text-8xl md:text-[130px] lg:text-[150px] font-bold leading-none block" style={{ fontFamily: "'Anton', sans-serif", backgroundImage: 'linear-gradient(180deg, #02bf61 0%, rgba(2, 191, 97, 0.325) 67.5%, rgba(0, 57, 29, 0) 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', color: 'transparent' }}>
+                  <div className="-mt-6 xs:-mt-8 sm:-mt-10 md:-mt-12 relative z-15 select-none pointer-events-none animate-hero-up delay-500">
+                    <span className="text-7xl xs:text-8xl sm:text-8xl md:text-[130px] lg:text-[150px] font-bold leading-none block" style={{ fontFamily: "'Anton', sans-serif", backgroundImage: 'linear-gradient(180deg, #02bf61 0%, rgba(2, 191, 97, 0.325) 67.5%, rgba(0, 57, 29, 0) 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', color: 'transparent' }}>
                       1.0
                     </span>
                   </div>
 
                   {/* Register Button & Scroll Down Indicator */}
-                  <div className="-mt-8 sm:-mt-9 md:-mt-10 z-30 relative flex flex-col items-center gap-3 animate-hero-up delay-650">
+                  <div className="-mt-7 xs:-mt-8 sm:-mt-9 md:-mt-10 z-30 relative flex flex-col items-center gap-3 animate-hero-up delay-650">
                     <button 
                       onClick={handleRegisterClick}
-                      className="bg-transparent text-[#00ff41] px-6 sm:px-10 md:px-12 py-3.5 sm:py-4 md:py-5 font-mono text-[13px] sm:text-base md:text-lg leading-none font-bold uppercase hover:bg-[#00ff41] hover:text-[#000000] border border-[#00ff41] transition-all duration-300 shadow-[0_0_12px_rgba(0,255,65,0.4)]"
+                      className="bg-transparent text-[#00ff41] px-6 xs:px-8 sm:px-10 md:px-12 py-3.5 sm:py-4 md:py-5 font-mono text-sm sm:text-base md:text-lg leading-none font-bold uppercase hover:bg-[#00ff41] hover:text-[#000000] border border-[#00ff41] transition-all duration-300 shadow-[0_0_12px_rgba(0,255,65,0.4)]"
                     >
                       &gt;_ REGISTER ON UNSTOP
                     </button>
@@ -232,18 +300,18 @@ export default function NoLimitHackathonPage() {
         {/* ABOUT SECTION WITH BIDIRECTIONAL SCROLL TRANSITION */}
         <section 
           id="about" 
-          className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 py-10 sm:py-16 border-t border-[#1a1a1a] transition-all duration-700 overflow-hidden"
+          className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 py-8 sm:py-16 transition-all duration-700 overflow-hidden"
         >
           {/* Left Column: Hero Elements (NO LIMITS, ZERO//CONSTRAINTS, 1.0, Register Button) sliding down & scaled down into Left */}
           <div 
             className={`col-span-1 lg:col-span-5 flex flex-col items-start justify-center transition-all duration-700 transform ${
               isScrolledToAbout 
                 ? 'translate-x-0 translate-y-0 opacity-100' 
-                : '-translate-x-16 -translate-y-12 opacity-0 pointer-events-none'
+                : 'opacity-0 translate-y-6 lg:-translate-x-16 lg:-translate-y-12 pointer-events-none'
             }`}
           >
             <div className="flex flex-col items-start text-left w-full space-y-1">
-              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-wider text-[#00ff41] leading-none" style={{ fontFamily: "'Impact', 'Charcoal', sans-serif" }}>
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-wider text-[#00bf63] leading-none" style={{ fontFamily: "'Impact', 'Charcoal', sans-serif" }}>
                 NO LIMITS.
               </h1>
               <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold tracking-[0.05em] leading-none text-black -mt-1" style={{ WebkitTextStroke: '0.5px rgb(218, 230, 210)', fontFamily: "'Anton', sans-serif" }}>
@@ -253,10 +321,10 @@ export default function NoLimitHackathonPage() {
                 1.0
               </span>
 
-              <div className="pt-4">
+              <div className="pt-3 sm:pt-4">
                 <button 
                   onClick={handleRegisterClick}
-                  className="bg-transparent text-[#00ff41] px-5 sm:px-8 py-2.5 sm:py-3.5 font-mono text-xs sm:text-sm leading-none font-bold uppercase hover:bg-[#00ff41] hover:text-[#000000] border border-[#00ff41] transition-all duration-300 shadow-[0_0_12px_rgba(0,255,65,0.4)]"
+                  className="bg-transparent text-[#00ff41] px-4 sm:px-8 py-2 sm:py-3.5 font-mono text-xs sm:text-sm leading-none font-bold uppercase hover:bg-[#00ff41] hover:text-[#000000] border border-[#00ff41] transition-all duration-300 shadow-[0_0_12px_rgba(0,255,65,0.4)]"
                 >
                   &gt;_ REGISTER ON UNSTOP
                 </button>
@@ -271,10 +339,10 @@ export default function NoLimitHackathonPage() {
               className={`transition-all duration-700 transform ${
                 isScrolledToAbout 
                   ? 'translate-x-0 translate-y-0 opacity-100' 
-                  : 'translate-x-16 -translate-y-12 opacity-0'
+                  : 'opacity-0 translate-y-6 lg:translate-x-16 lg:-translate-y-12'
               }`}
             >
-              <span className="text-[#ffb000] text-4xl sm:text-6xl lg:text-7xl italic font-normal block leading-none" style={{ fontFamily: "'Brittany Signature', 'Brittany', cursive" }}>
+              <span className="text-[#ffb000] text-3xl sm:text-6xl lg:text-7xl italic font-normal block leading-none" style={{ fontFamily: "'Brittany Signature', 'Brittany', cursive" }}>
                 About the Hackathon
               </span>
             </div>
@@ -296,7 +364,7 @@ export default function NoLimitHackathonPage() {
 
         {/* THE ROUNDS SECTION */}
         <section className="space-y-6 sm:space-y-8" id="stages">
-          <div className="border-b border-[#1a1a1a] pb-4">
+          <div className="pb-4">
             <h2 className="text-2xl sm:text-4xl font-extrabold text-[#00ff41] uppercase">_THE_ROUNDS</h2>
           </div>
 
@@ -361,11 +429,11 @@ export default function NoLimitHackathonPage() {
         </section>
 
         {/* VISUAL INTERLUDE BANNER */}
-        <section className="my-10 sm:my-12 border border-[#1a1a1a] bg-[#0a0a0a] relative overflow-hidden flex flex-col md:flex-row items-stretch">
-          <div className="flex-1 p-6 sm:p-12 flex flex-col justify-center border-b md:border-b-0 md:border-r border-[#1a1a1a]">
-            <h2 className="text-xl sm:text-4xl font-extrabold text-white leading-tight uppercase">
+        <section className="my-8 sm:my-12 bg-[#0a0a0a] relative overflow-hidden flex flex-col md:flex-row items-stretch">
+          <div className="flex-1 p-5 sm:p-12 flex flex-col justify-center">
+            <h2 className="text-lg sm:text-4xl font-extrabold text-white leading-tight uppercase">
               NOT EVERYONE<br />HAS GUTS TO<br />
-              <span className="text-[#00ff41] bg-[#1a1a1a] px-2.5 sm:px-3 py-1 inline-block mt-2 sm:mt-3 border border-[#00ff41]/40">
+              <span className="text-[#00ff41] bg-[#1a1a1a] px-2.5 sm:px-3 py-1 inline-block mt-2 sm:mt-3 border border-[#00ff41]/40 text-xs sm:text-2xl">
                 REVERSE THE ROLE.
               </span>
             </h2>
@@ -373,7 +441,7 @@ export default function NoLimitHackathonPage() {
               Leverage modern AI agents, prompt engineering, and rapid deployment platforms to flip traditional software bottlenecks upside down.
             </p>
           </div>
-          <div className="flex-1 relative w-full h-[220px] sm:h-[300px] md:h-auto min-h-[220px] sm:min-h-[300px] bg-[#050505] overflow-hidden">
+          <div className="flex-1 relative w-full h-[180px] sm:h-[300px] md:h-auto min-h-[180px] sm:min-h-[300px] bg-[#050505] overflow-hidden">
             <img 
               src="/images/AI_guts.png" 
               alt="Cyberpunk Matrix Grid Visual" 
@@ -383,7 +451,7 @@ export default function NoLimitHackathonPage() {
         </section>
 
         {/* RULES & SPECS SECTION */}
-        <section className="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 py-8 sm:py-10 border-t border-[#1a1a1a]" id="rules">
+        <section className="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 py-8 sm:py-10" id="rules">
           <div className="col-span-1 md:col-span-4">
             <h2 className="text-2xl sm:text-4xl font-extrabold text-[#00ff41] uppercase tracking-tight">
               _RULES_&_SPECS
@@ -395,21 +463,21 @@ export default function NoLimitHackathonPage() {
                 <span className="text-[#00ff41] font-bold text-base sm:text-lg shrink-0">[01]</span>
                 <div>
                   <strong className="text-white block uppercase mb-0.5">Team Structure & Size</strong>
-                  <span>Teams of 2 to 4 members. Solo participation is not permitted. All members must register before Round 1.</span>
+                  <span>Teams of 1 to 4 members. Solo participation is permitted. All members must register before Round 1.</span>
                 </div>
               </li>
               <li className="flex items-start gap-3 sm:gap-4 p-3.5 sm:p-4 bg-[#0a0a0a] border border-[#1a1a1a]">
                 <span className="text-[#00ff41] font-bold text-base sm:text-lg shrink-0">[02]</span>
                 <div>
-                  <strong className="text-white block uppercase mb-0.5">Zero Tool Restrictions</strong>
-                  <span>Use LLMs, AI coding agents (Cursor, ChatGPT, Claude), open-source libraries, or no-code tools — how you use your resources is evaluated.</span>
+                  <strong className="text-white block uppercase mb-0.5">Registration Fee</strong>
+                  <span>Registration fee is ₹200 per Team. If your team has 4 members, then each member has to pay ₹50. Payment will be done by the Team Leader.</span>
                 </div>
               </li>
               <li className="flex items-start gap-3 sm:gap-4 p-3.5 sm:p-4 bg-[#0a0a0a] border border-[#1a1a1a]">
                 <span className="text-[#00ff41] font-bold text-base sm:text-lg shrink-0">[03]</span>
                 <div>
-                  <strong className="text-white block uppercase mb-0.5">Mandatory Live Deployment</strong>
-                  <span>Every round's final submission must include a live, accessible web URL. Localhost demos or slide decks will be disqualified.</span>
+                  <strong className="text-white block uppercase mb-0.5">Zero Tool Restrictions</strong>
+                  <span>Use LLMs, AI coding agents (Cursor, ChatGPT, Claude), open-source libraries, or no-code tools — how you use your resources is evaluated.</span>
                 </div>
               </li>
               <li className="flex items-start gap-3 sm:gap-4 p-3.5 sm:p-4 bg-[#0a0a0a] border border-[#1a1a1a]">
@@ -424,8 +492,8 @@ export default function NoLimitHackathonPage() {
         </section>
 
         {/* JUDGING CRITERIA SECTION */}
-        <section className="space-y-6 sm:space-y-8 py-8 sm:py-10 border-t border-[#1a1a1a]" id="criteria">
-          <div className="border-b border-[#1a1a1a] pb-4">
+        <section className="space-y-6 sm:space-y-8 py-8 sm:py-10" id="criteria">
+          <div className="pb-4">
             <h2 className="text-2xl sm:text-4xl font-extrabold text-[#00ff41] uppercase">_JUDGING_CRITERIA</h2>
           </div>
 
@@ -437,7 +505,7 @@ export default function NoLimitHackathonPage() {
                 <h3 className="text-base sm:text-lg font-extrabold text-white uppercase">LIVE DEPLOYMENT</h3>
               </div>
               <p className="text-xs text-[#b9ccb2] leading-relaxed">
-                Is the solution live on a public domain? Does it function reliably without crashing under real-world testing?
+                Live deployment is not mandatory But you will get bonus points if your solution is live on a public domain and does it function reliably without crashing under real-world testing.
               </p>
             </div>
 
@@ -475,8 +543,8 @@ export default function NoLimitHackathonPage() {
         </section>
 
         {/* FREQUENTLY ASKED QUESTIONS (FAQ) */}
-        <section className="space-y-6 sm:space-y-8 py-8 sm:py-10 border-t border-[#1a1a1a]" id="faq">
-          <div className="border-b border-[#1a1a1a] pb-4">
+        <section className="space-y-6 sm:space-y-8 py-8 sm:py-10" id="faq">
+          <div className="pb-4">
             <h2 className="text-2xl sm:text-4xl font-extrabold text-[#00ff41] uppercase">_SYSTEM_FAQ</h2>
           </div>
 
@@ -496,7 +564,7 @@ export default function NoLimitHackathonPage() {
                 </div>
 
                 {openFaq === idx && (
-                  <div className="p-3.5 sm:p-4 pt-0 text-xs text-[#b9ccb2] leading-relaxed border-t border-[#1a1a1a]/50 bg-[#000000]">
+                  <div className="p-3.5 sm:p-4 pt-0 text-xs text-[#b9ccb2] leading-relaxed bg-[#000000]">
                     &gt; {faq.a}
                   </div>
                 )}
@@ -511,7 +579,7 @@ export default function NoLimitHackathonPage() {
             &gt;_ READY TO BUILD & SHIP?
           </h2>
           <p className="text-xs sm:text-sm text-[#b9ccb2] max-w-xl mx-auto font-semibold leading-relaxed">
-            Registration is live on Unstop. Assemble your team of 2-4 hackers and lock in your slot before deadline.
+            Registration is live on Unstop. Assemble your team of 1-4 hackers and lock in your slot before deadline.
           </p>
           <div className="pt-2">
             <button
